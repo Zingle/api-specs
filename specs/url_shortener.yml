@@ -1,0 +1,136 @@
+openapi: 3.0
+info:
+    title: Zingle Url Shortner
+    description: Shortens URLs
+    contact:
+        name: API Support
+        url: http://www.zingle.me
+    version: 1.0.0
+
+paths:
+    /v1:
+        post:
+            description: Shorten a single URL
+            operationId: shorten
+            tags: [v1]
+            responses:
+                '200':
+                    description: Creates a shortened URL
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ShortUrl'
+
+                '400':
+                    description: Failed to create urls
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/Error'
+
+            requestBody:
+                content:
+                    '*/*':
+                        schema:
+                            properties:
+                                targetUrl:
+                                    type: string
+                                vendor:
+                                    type: object
+                                    $ref: '#/components/schemas/Vendor'
+
+
+
+    /v1/bulk:
+        post:
+            description: Shorten a bulk URLs
+            operationId: shortenBulk
+            tags: [v1]
+            responses:
+                '200':
+                    description: Bulk creates a shortened URLs
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ShortUrl'
+
+                '400':
+                    description: Failed to create urls
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/Error'
+
+            requestBody:
+                content:
+                    '*/*':
+                        schema:
+                            properties:
+                                targetUrls:
+                                    type: array
+                                vendor:
+                                    type: object
+                                    $ref: '#/components/schemas/Vendor'
+
+    /_internal_/health:
+        get:
+            operationId: getHealthCheck
+            description: Checks health of service
+            responses:
+                '200':
+                    description: 'Everything is good'
+
+components:
+    schemas:
+        Vendor:
+            type: object
+            properties:
+                code:
+                    type: string
+                token:
+                    type: string
+
+        Error:
+            type: object
+            properties:
+                error:
+                    type: string
+
+        ShortUrl:
+            type: object
+            properties:
+                url:
+                    type: string
+                targetUrl:
+                    type: string
+                vendorUrls:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/VendorUrl'
+
+        VendorUrl:
+            type: object
+            properties:
+                vendor:
+                    type: string
+                url:
+                    type: string
+
+    securitySchemes:
+        jwt:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+
+servers:
+    - url: http://127.0.0.1:{port}
+      description: Local development server
+      variables:
+          port:
+              default: 8000
+    - url: https://zngl.me
+      description: Production server
