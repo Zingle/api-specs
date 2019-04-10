@@ -26,7 +26,6 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
                                 $ref: '#/components/schemas/Error'
 
             requestBody:
@@ -37,7 +36,6 @@ paths:
                                 targetUrl:
                                     type: string
                                 vendor:
-                                    type: object
                                     $ref: '#/components/schemas/Vendor'
 
 
@@ -62,7 +60,6 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
                                 $ref: '#/components/schemas/Error'
 
             requestBody:
@@ -73,7 +70,6 @@ paths:
                                 targetUrls:
                                     type: array
                                 vendor:
-                                    type: object
                                     $ref: '#/components/schemas/Vendor'
 
     /_internal_/health:
@@ -83,6 +79,9 @@ paths:
             responses:
                 '200':
                     description: 'Everything is good'
+
+                '417':
+                    description: 'Database connection failed'
 
 components:
     schemas:
@@ -107,10 +106,9 @@ components:
                     type: string
                 targetUrl:
                     type: string
-                vendorUrls:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/VendorUrl'
+                vendorUrl:
+                    type: object
+                    $ref: '#/components/schemas/VendorUrl'
 
         VendorUrl:
             type: object
