@@ -76,8 +76,8 @@ paths:
                     description: 'Database connection failed'
 
 components:
-    requestBodies:
-        shortenRequest:
+    schemas:
+        ShortenRequest:
             type: object
             properties:
                 targetUrl:
@@ -85,7 +85,7 @@ components:
                 vendor:
                     $ref: '#/components/schemas/Vendor'
 
-        bulkShortenRequest:
+        BulkShortenRequest:
             type: object
             properties:
                 targetUrls:
@@ -93,7 +93,6 @@ components:
                 vendor:
                     $ref: '#/components/schemas/Vendor'
 
-    schemas:
         Vendor:
             type: object
             properties:
