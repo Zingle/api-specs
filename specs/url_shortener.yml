@@ -32,6 +32,7 @@ paths:
                 content:
                     '*/*':
                         schema:
+                            type: object
                             properties:
                                 targetUrl:
                                     type: string
@@ -66,6 +67,7 @@ paths:
                 content:
                     '*/*':
                         schema:
+                            type: object
                             properties:
                                 targetUrls:
                                     type: array
