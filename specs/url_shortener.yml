@@ -32,12 +32,7 @@ paths:
                 content:
                     '*/*':
                         schema:
-                            type: object
-                            properties:
-                                targetUrl:
-                                    type: string
-                                vendor:
-                                    $ref: '#/components/schemas/Vendor'
+                            $ref: '#/components/requestBodies/shortenRequest'
 
 
 
@@ -67,12 +62,7 @@ paths:
                 content:
                     '*/*':
                         schema:
-                            type: object
-                            properties:
-                                targetUrls:
-                                    type: array
-                                vendor:
-                                    $ref: '#/components/schemas/Vendor'
+                            $ref: '#/components/requestBodies/bulkShortenRequest'
 
     /_internal_/health:
         get:
@@ -86,6 +76,23 @@ paths:
                     description: 'Database connection failed'
 
 components:
+    requestBodies:
+        shortenRequest:
+            type: object
+            properties:
+                targetUrl:
+                    type: string
+                vendor:
+                    $ref: '#/components/schemas/Vendor'
+
+        bulkShortenRequest:
+            type: object
+            properties:
+                targetUrls:
+                    type: array
+                vendor:
+                    $ref: '#/components/schemas/Vendor'
+
     schemas:
         Vendor:
             type: object
