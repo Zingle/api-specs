@@ -32,7 +32,7 @@ paths:
                 content:
                     '*/*':
                         schema:
-                            $ref: '#/components/requestBodies/shortenRequest'
+                            $ref: '#/components/schemas/shortenRequest'
 
 
 
@@ -62,7 +62,7 @@ paths:
                 content:
                     '*/*':
                         schema:
-                            $ref: '#/components/requestBodies/bulkShortenRequest'
+                            $ref: '#/components/schemas/BulkShortenRequest'
 
     /_internal_/health:
         get:
