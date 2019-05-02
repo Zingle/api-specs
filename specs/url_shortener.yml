@@ -64,6 +64,35 @@ paths:
                         schema:
                             $ref: '#/components/schemas/BulkShortenRequest'
 
+    /v1/replace:
+        post:
+            description: Replace targetUrls in string
+            operationId: replace
+            tags: [v1]
+            responses:
+                '200':
+                    description: Replaced urls in string
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ReplacedText'
+
+                '400':
+                    description: Failed to create urls
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+
+            requestBody:
+                content:
+                    '*/*':
+                        schema:
+                            $ref: '#/components/schemas/ReplaceRequest'
+
+
     /_internal_/health:
         get:
             operationId: getHealthCheck
@@ -93,6 +122,18 @@ components:
                 vendor:
                     $ref: '#/components/schemas/Vendor'
 
+        ReplaceRequest:
+            type: object
+            properties:
+                targetUrls:
+                    type: array
+                vendor:
+                    $ref: '#/components/schemas/Vendor'
+                text:
+                    type: string
+                preferVedor:
+                    type: boolean
+
         Vendor:
             type: object
             properties:
@@ -117,6 +158,19 @@ components:
                 vendorUrl:
                     type: object
                     $ref: '#/components/schemas/VendorUrl'
+
+
+        ReplacedText:
+            type: object
+            properties:
+                text:
+                    type: string
+                originalText:
+                    type: string
+                shortUrls:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ShortUrl'
 
         VendorUrl:
             type: object
