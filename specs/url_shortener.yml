@@ -129,7 +129,7 @@ components:
                     $ref: '#/components/schemas/Vendor'
                 text:
                     type: string
-                preferVedor:
+                preferVendor:
                     type: boolean
 
         Vendor:
