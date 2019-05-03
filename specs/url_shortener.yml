@@ -75,9 +75,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/ReplacedText'
+                                $ref: '#/components/schemas/ReplacedText'
 
                 '400':
                     description: Failed to create urls
