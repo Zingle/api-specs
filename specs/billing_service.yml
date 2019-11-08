@@ -1,0 +1,123 @@
+openapi: 3.0
+info:
+    title: Zingle Billing Service
+    description: Billing Service
+    contact:
+        name: API Support
+        url: http://www.zingle.me
+    version: 1.0.0
+
+paths:
+    /api/configs:
+        get:
+            description: Get current configurations
+            operationId: configurations
+            tags: [v1]
+            responses:
+                '200':
+                    description: Creates a shortened URL
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Config'
+
+        put:
+            description: Save a configuration
+            operationId: configure
+            tags: [v1]
+            responses:
+                '200':
+                    description: Saved configuration
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ConfigRequest'
+
+                '400':
+                    description: Failed to create urls
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+
+            requestBody:
+                content:
+                    '*/*':
+                        schema:
+                            $ref: '#/components/schemas/ReplaceRequest'
+
+
+    /api/configs/available:
+        get:
+            description: Get potential configurations
+            operationId: availableConfigurations
+            tags: [v1]
+            responses:
+                '200':
+                    description: Retrieve all potential configurations
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+
+    /api/message-usages/{serviceId}:
+        get:
+            description: Retrieve usage
+            operationId: usage
+            tags: [v1]
+            responses:
+                '200':
+                    description: Retrieve all potential configurations
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+        parameters:
+            - name: serviceId
+              in: path
+              description: Service ID 
+              required: true
+
+
+    /_internal_/health:
+        get:
+            operationId: getHealthCheck
+            description: Checks health of service
+            responses:
+                '200':
+                    description: 'Everything is good'
+
+                '417':
+                    description: 'Database connection failed'
+
+components:
+    schemas:
+        Config:
+            type: object
+            properties:
+                name:
+                    type: string
+                value: ~
+
+        ConfigRequest:
+            type: object
+            properties:
+                summary_emails:
+                    type: array
+
+    securitySchemes:
+        jwt:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+
+servers:
+    - url: http://127.0.0.1:{port}
+      description: Local development server
+      variables:
+          port:
+              default: 8000
+    - url: https://billing.zingle.me
+      description: Production server
