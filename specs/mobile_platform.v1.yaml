@@ -1,0 +1,196 @@
+openapi: 3.0.0
+info:
+  title: mobile_platform
+  version: '1.0'
+  contact:
+    name: Zachary Quintana
+    url: 'https://github.com/zquintana'
+    email: zach.quintana@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/consume/{providerCode}':
+    parameters:
+      - schema:
+          type: string
+        name: providerCode
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-consume-providerCode
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Location:
+              schema:
+                type: string
+  /messages:
+    post:
+      summary: ''
+      operationId: post-messages
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResult'
+              examples: {}
+        '406':
+          description: Not Acceptable
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                to:
+                  type: string
+                body:
+                  type: string
+                attachments:
+                  type: array
+                  items:
+                    type: string
+  '/messages/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+      operationId: get-messages-id
+      description: ''
+  /numbers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PhoneNumber'
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+      operationId: get-numbers
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                country:
+                  type: string
+                areaCode:
+                  type: string
+                provider:
+                  type: string
+  /provision:
+    post:
+      summary: ''
+      operationId: post-provision
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                number:
+                  type: string
+    delete:
+      summary: ''
+      operationId: delete-provision
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: string
+        description: ''
+  /_internal_/health:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-_internal_-health
+      description: ''
+components:
+  schemas:
+    MessageResult:
+      title: MessageResult
+      type: object
+      properties:
+        id:
+          type: string
+    Message:
+      title: Message
+      type: object
+      properties:
+        id:
+          type: string
+        to:
+          type: string
+        from:
+          type: string
+        body:
+          type: string
+        direction:
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+    Attachment:
+      title: Attachment
+      type: object
+      properties:
+        id:
+          type: string
+        uri:
+          type: string
+    PhoneNumber:
+      title: PhoneNumber
+      type: object
+      properties:
+        number:
+          type: string
+        formatted:
+          type: string
+  securitySchemes: {}
