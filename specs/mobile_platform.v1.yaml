@@ -137,6 +137,8 @@ components:
     Message:
       title: Message
       type: object
+      x-tags:
+        - Models
       properties:
         id:
           type: string
@@ -152,18 +154,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attachment'
-      x-tags:
-        - Models
     Attachment:
       title: Attachment
       type: object
+      x-tags:
+        - Models
       properties:
         id:
           type: string
         uri:
           type: string
-      x-tags:
-        - Models
+          format: uri
     PhoneNumber:
       title: PhoneNumber
       type: object
@@ -220,6 +221,12 @@ components:
           type: string
       x-tags:
         - Request
+    Direction:
+      type: string
+      enum:
+        - inbound
+        - outbound
+        - unknown
   securitySchemes:
     JWT_Token:
       type: http
