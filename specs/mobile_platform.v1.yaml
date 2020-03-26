@@ -18,7 +18,7 @@ paths:
         required: true
     post:
       summary: ''
-      operationId: post-consume-providerCode
+      operationId: consume
       responses:
         '202':
           description: Accepted
@@ -29,7 +29,7 @@ paths:
   /messages:
     post:
       summary: ''
-      operationId: post-messages
+      operationId: post-message
       responses:
         '200':
           description: OK
@@ -61,7 +61,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Message'
-      operationId: get-messages-id
+      operationId: get-message
       description: ''
   /numbers:
     get:
@@ -89,7 +89,7 @@ paths:
   /provision:
     post:
       summary: ''
-      operationId: post-provision
+      operationId: provision
       responses:
         '202':
           description: Accepted
@@ -102,7 +102,7 @@ paths:
               $ref: '#/components/schemas/ProvisionRequest'
     delete:
       summary: ''
-      operationId: delete-provision
+      operationId: release
       responses:
         '202':
           description: Accepted
@@ -114,15 +114,13 @@ paths:
             schema:
               $ref: '#/components/schemas/ReleaseNumberRequest'
         description: ''
-      tags:
-        - Interface
   /_internal_/health:
     get:
       summary: Your GET endpoint
       responses:
         '200':
           description: OK
-      operationId: get-_internal_-health
+      operationId: get-health
       description: ''
       tags:
         - Internal
