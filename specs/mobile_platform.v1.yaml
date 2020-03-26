@@ -211,8 +211,9 @@ components:
       x-tags:
         - Models
   securitySchemes:
-    JWT Token:
+    JWT_Token:
       type: http
       scheme: bearer
+      description: JWT Token
 security:
   - JWT Token: []
