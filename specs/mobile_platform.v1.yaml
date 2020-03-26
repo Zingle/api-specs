@@ -149,7 +149,7 @@ components:
         body:
           type: string
         direction:
-          type: string
+          $ref: '#/components/schemas/Direction'
         attachments:
           type: array
           items:
