@@ -26,8 +26,6 @@ paths:
             Location:
               schema:
                 type: string
-      tags:
-        - Interface
   /messages:
     post:
       summary: ''
@@ -46,20 +44,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                from:
-                  type: string
-                to:
-                  type: string
-                body:
-                  type: string
-                attachments:
-                  type: array
-                  items:
-                    type: string
-      tags:
-        - Interface
+              $ref: '#/components/schemas/NewMessageRequest'
   '/messages/{id}':
     parameters:
       - schema:
@@ -78,13 +63,9 @@ paths:
                 $ref: '#/components/schemas/Message'
       operationId: get-messages-id
       description: ''
-      tags:
-        - Interface
   /numbers:
     get:
       summary: Your GET endpoint
-      tags:
-        - Interface
       responses:
         '200':
           description: OK
@@ -104,14 +85,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                country:
-                  type: string
-                areaCode:
-                  type: string
-                provider:
-                  type: string
+              $ref: '#/components/schemas/SearchNumbersRequest'
   /provision:
     post:
       summary: ''
@@ -125,12 +99,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                provider:
-                  type: string
-                number:
-                  type: string
+              $ref: '#/components/schemas/ProvisionRequest'
     delete:
       summary: ''
       operationId: delete-provision
@@ -143,10 +112,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                number:
-                  type: string
+              $ref: '#/components/schemas/ReleaseNumberRequest'
         description: ''
       tags:
         - Interface
@@ -210,6 +176,52 @@ components:
           type: string
       x-tags:
         - Models
+    NewMessageRequest:
+      title: NewMessageRequest
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+        body:
+          type: string
+        attachments:
+          type: array
+          items:
+            type: string
+      x-tags:
+        - Request
+    SearchNumbersRequest:
+      title: SearchNumbersRequest
+      type: object
+      x-tags:
+        - Request
+      properties:
+        country:
+          type: string
+        areaCode:
+          type: string
+        provider:
+          type: string
+    ProvisionRequest:
+      title: ProvisionRequest
+      type: object
+      x-tags:
+        - Request
+      properties:
+        provider:
+          type: string
+        number:
+          type: string
+    ReleaseNumberRequest:
+      title: ReleaseNumberRequest
+      type: object
+      properties:
+        number:
+          type: string
+      x-tags:
+        - Request
   securitySchemes:
     JWT_Token:
       type: http
