@@ -26,6 +26,8 @@ paths:
             Location:
               schema:
                 type: string
+      tags:
+        - Interface
   /messages:
     post:
       summary: ''
@@ -56,6 +58,8 @@ paths:
                   type: array
                   items:
                     type: string
+      tags:
+        - Interface
   '/messages/{id}':
     parameters:
       - schema:
@@ -65,7 +69,6 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
       responses:
         '200':
           description: OK
@@ -75,10 +78,13 @@ paths:
                 $ref: '#/components/schemas/Message'
       operationId: get-messages-id
       description: ''
+      tags:
+        - Interface
   /numbers:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Interface
       responses:
         '200':
           description: OK
@@ -142,15 +148,18 @@ paths:
                 number:
                   type: string
         description: ''
+      tags:
+        - Interface
   /_internal_/health:
     get:
       summary: Your GET endpoint
-      tags: []
       responses:
         '200':
           description: OK
       operationId: get-_internal_-health
       description: ''
+      tags:
+        - Internal
 components:
   schemas:
     MessageResult:
