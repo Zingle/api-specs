@@ -17,7 +17,7 @@ paths:
         in: path
         required: true
     post:
-      summary: ''
+      summary: Consume a Message
       operationId: consume
       responses:
         '202':
@@ -26,9 +26,12 @@ paths:
             Location:
               schema:
                 type: string
+      tags:
+        - API
+      description: ''
   /messages:
     post:
-      summary: ''
+      summary: Send a New Message
       operationId: post-message
       responses:
         '200':
@@ -45,6 +48,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NewMessageRequest'
+      tags:
+        - API
   '/messages/{id}':
     parameters:
       - schema:
@@ -53,7 +58,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get Messages for a Number
       responses:
         '200':
           description: OK
@@ -63,9 +68,11 @@ paths:
                 $ref: '#/components/schemas/Message'
       operationId: get-message
       description: ''
+      tags:
+        - API
   /numbers:
     get:
-      summary: Your GET endpoint
+      summary: Search Available Numbers
       responses:
         '200':
           description: OK
@@ -86,9 +93,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SearchNumbersRequest'
+      tags:
+        - API
   /provision:
     post:
-      summary: ''
+      summary: Provision a Number
       operationId: provision
       responses:
         '202':
@@ -100,8 +109,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProvisionRequest'
+      tags:
+        - API
     delete:
-      summary: ''
+      summary: Release a Number
       operationId: release
       responses:
         '202':
@@ -114,16 +125,18 @@ paths:
             schema:
               $ref: '#/components/schemas/ReleaseNumberRequest'
         description: ''
+      tags:
+        - API
   /_internal_/health:
     get:
-      summary: Your GET endpoint
+      summary: Health Check
       responses:
         '200':
           description: OK
       operationId: get-health
       description: ''
       tags:
-        - Internal
+        - Health Check
 components:
   schemas:
     MessageResult:
@@ -227,6 +240,9 @@ components:
         - inbound
         - outbound
         - unknown
+      x-tags:
+        - Models
+      description: ''
   securitySchemes:
     JWT_Token:
       type: http
