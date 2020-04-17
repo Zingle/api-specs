@@ -100,8 +100,8 @@ paths:
       summary: Provision a Number
       operationId: provision
       responses:
-        '202':
-          description: Accepted
+        '204':
+          description: No Content
         '400':
           description: Bad Request
       requestBody:
