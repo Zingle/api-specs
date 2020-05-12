@@ -115,8 +115,8 @@ paths:
       summary: Release a Number
       operationId: release
       responses:
-        '202':
-          description: Accepted
+        '204':
+          description: No Content
         '400':
           description: Bad Request
       requestBody:
