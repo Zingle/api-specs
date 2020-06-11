@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: event-broker
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /pubsub/adapter:
+    get:
+      summary: Pub/Sub Adapter Get
+      tags:
+        - API
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  adapter:
+                    $ref: '#/components/schemas/Adapter'
+      operationId: get-adapter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+    post:
+      summary: Pub/Sub Adapter Set
+      operationId: post-adapter
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adapter:
+                  $ref: '#/components/schemas/Adapter'
+        description: ''
+    parameters: []
+  /event:
+    post:
+      summary: Publish Event
+      operationId: post-event
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishEventRequest'
+      tags:
+        - API
+components:
+  schemas:
+    Adapter:
+      type: string
+      enum:
+        - redis
+        - kafka
+    PublishEventRequest:
+      title: PublishEventRequest
+      type: object
+      properties:
+        topic:
+          type: string
+        payload:
+          type:
+            - number
+            - object
+            - string
+  securitySchemes: {}
