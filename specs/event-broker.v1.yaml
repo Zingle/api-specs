@@ -64,6 +64,8 @@ components:
       enum:
         - redis
         - kafka
+      x-tags:
+        - API
     PublishEventRequest:
       title: PublishEventRequest
       type: object
@@ -75,4 +77,14 @@ components:
             - number
             - object
             - string
+      x-tags:
+        - API
+    SetAdapterRequest:
+      title: SetAdapterRequest
+      type: object
+      properties:
+        adapter:
+          $ref: ''
+      x-tags:
+        - API
   securitySchemes: {}
