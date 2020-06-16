@@ -107,6 +107,8 @@ components:
       properties:
         targetUrls:
           type: array
+          items:
+            type: string
         vendor:
           $ref: '#/components/schemas/Vendor'
     ReplaceRequest:
@@ -114,6 +116,8 @@ components:
       properties:
         targetUrls:
           type: array
+          items:
+            type: string
         vendor:
           $ref: '#/components/schemas/Vendor'
         text:
