@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Zingle Url Shortner
+  title: Url Shortner
   description: Shortens URLs
   contact:
     name: API Support

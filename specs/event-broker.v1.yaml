@@ -59,13 +59,6 @@ paths:
         - API
 components:
   schemas:
-    Adapter:
-      type: string
-      enum:
-        - redis
-        - kafka
-      x-tags:
-        - Models
     PublishEventRequest:
       title: PublishEventRequest
       type: object
@@ -73,10 +66,7 @@ components:
         topic:
           type: string
         payload:
-          type:
-            - number
-            - object
-            - string
+          oneOf: [number, object, string]
       x-tags:
         - Models
     SetAdapterRequest:
@@ -84,7 +74,14 @@ components:
       type: object
       properties:
         adapter:
-          $ref: ''
+          $ref: '#/components/schemas/Adapter'
+      x-tags:
+        - Models
+    Adapter:
+      type: string
+      enum:
+        - redis
+        - kafka
       x-tags:
         - Models
   securitySchemes: {}

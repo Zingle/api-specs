@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Zingle Billing Service
+  title: Billing Service
   description: Billing Service
   contact:
     name: API Support
