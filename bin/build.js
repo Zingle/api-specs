@@ -85,7 +85,7 @@ async function getLastCommitMessage() {
 }
 
 async function commitChanges(commitMessage, lang) {
-    console.log('Commit changes');
+    console.log(`Commiting "${commitMessage}"`);
     const gitPath = getBuildPath(lang);
 
     return exec(`git -C ${gitPath} add . && git -C ${gitPath} commit -m "${commitMessage}"`);
@@ -93,6 +93,15 @@ async function commitChanges(commitMessage, lang) {
 
 async function pushRepo(lang) {
     return exec(`git -C ${getBuildPath(lang)} push`);
+}
+
+function checkPendingChanges(lang, hasChanges) {
+    const statusComment = `git -C ${getBuildPath(lang)} status --porcelain`;
+    exec(statusComment).then(function ({ stdout }) {
+        if (stdout.trim().length > 0) {
+            hasChanges();
+        }
+    });
 }
 
 async function build() {
@@ -104,7 +113,7 @@ async function build() {
         return obj;
     }, {});
 
-    _.each(config.targets, async (targetConfig, lang) => {
+    for (let [lang, targetConfig] of Object.entries(config.targets)) {
         // clone repository
         await cloneRepo(lang, targetConfig.repo);
 
@@ -116,12 +125,13 @@ async function build() {
             require(`../src/${targetConfig.postProcessor}`)(targetConfig, meta);
         }
 
-        // commit change
-        const commitMessage = `SpecBuild: ${lastCommitMessage}`;
-        console.log(`Commiting "${commitMessage}"`);
-        await commitChanges(commitMessage, lang);
-        pushRepo(lang);
-    });
+        checkPendingChanges(lang, async function () {
+            // commit change
+            const commitMessage = `SpecBuild: ${lastCommitMessage}`;
+            await commitChanges(commitMessage, lang);
+            await pushRepo(lang);
+        });
+    }
 }
 
 build();
