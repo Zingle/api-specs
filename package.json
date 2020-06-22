@@ -1,0 +1,29 @@
+{
+  "name": "api-specs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build": "node bin/build.js",
+    "build:clean": "rm -rf build/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zingle/api-specs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zingle/api-specs/issues"
+  },
+  "homepage": "https://github.com/Zingle/api-specs#readme",
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.13-4.3.1",
+    "js-yaml": "^3.14.0",
+    "kebab-case": "^1.0.0",
+    "pascal-case": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "yargs": "^15.3.1"
+  }
+}

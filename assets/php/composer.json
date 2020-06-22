@@ -1,0 +1,29 @@
+{
+  "name": "zingle/php-sdk",
+  "description": "Zingle PHP SDK",
+  "keywords": ["zingle", "sdk"],
+  "type": "library",
+  "homepage": "https://github.com/zingle/php-sdk",
+  "authors": [
+    {
+      "name": "Zingle"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.1",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {}
+  },
+  "autoload-dev": {
+    "psr-4": {}
+  }
+}
