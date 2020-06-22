@@ -8,8 +8,6 @@ paths:
   /pubsub/adapter:
     get:
       summary: Pub/Sub Adapter Get
-      tags:
-        - API
       responses:
         '200':
           description: OK
@@ -27,6 +25,8 @@ paths:
           application/json:
             schema:
               type: object
+      tags:
+        - Rest
     post:
       summary: Pub/Sub Adapter Set
       operationId: post-adapter
@@ -42,6 +42,8 @@ paths:
                 adapter:
                   $ref: '#/components/schemas/Adapter'
         description: ''
+      tags:
+        - Rest
     parameters: []
   /event:
     post:
@@ -56,7 +58,7 @@ paths:
             schema:
               $ref: '#/components/schemas/PublishEventRequest'
       tags:
-        - API
+        - Rest
 components:
   schemas:
     Adapter:
