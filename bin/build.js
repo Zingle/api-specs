@@ -1,6 +1,5 @@
 const config = require('../config');
 const fs = require('fs');
-const _ = require('lodash');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const argv = require('yargs').argv;
