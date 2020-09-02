@@ -64,13 +64,16 @@ components:
     PublishEventRequest:
       title: PublishEventRequest
       type: object
+      x-tags:
+        - Models
       properties:
         topic:
           type: string
-        payload:
-          oneOf: [number, object, string]
-      x-tags:
-        - Models
+        payload: {}
+        timeout:
+          type: number
+      required:
+        - topic
     SetAdapterRequest:
       title: SetAdapterRequest
       type: object
