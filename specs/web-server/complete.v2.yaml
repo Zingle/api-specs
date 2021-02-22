@@ -4,8 +4,10 @@ info:
   version: '2.0'
   contact:
     name: Development
-    url: zingle.me
+    url: 'https://www.zingle.com/'
+    email: support@zingleme.com
   description: Zingle Core API
+  termsOfService: 'https://www.zingle.com/zingle-terms-and-conditions/'
 servers:
   - url: 'https://api.zingle.me/v2'
 security:
