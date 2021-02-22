@@ -2748,10 +2748,7 @@ paths:
         content:
           application/json:
             schema:
-              properties:
-                file:
-                  type: string
-                  format: binary
+              $ref: ./requests/UploadRequest.v1.yaml
       responses:
         '200':
           description: ''
@@ -2768,6 +2765,7 @@ paths:
                     type: array
                     items:
                       type: object
+      operationId: uploadCsvImport
   '/services/{serviceId}/csv-import/process':
     post:
       tags:
