@@ -5,6 +5,7 @@ info:
   contact:
     name: Development
     url: zingle.me
+  description: Zingle Core API
 servers:
   - url: 'https://api.zingle.me/v2'
 security:
@@ -74,6 +75,7 @@ paths:
                   id: 26f989cf-4a40-7369-12b8-1d38565ac170
                   createdAt: '1967-03-23T01:15:19.276Z'
                   updatedAt: '1965-01-27T08:09:50.060Z'
+      description: List service templates
     post:
       tags:
         - Templates
@@ -105,6 +107,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
+      description: Create service template
   '/services/{serviceId}/templates/{templateId}':
     get:
       tags:
@@ -1406,8 +1409,8 @@ paths:
     post:
       tags:
         - Analytics
-      summary: Build a group of services from an array of collection properties
-      operationId: build-service-group
+      summary: Create Analytics Service Group
+      operationId: createAnalyticsServiceGroup
       requestBody:
         content:
           application/json:
@@ -1433,7 +1436,7 @@ paths:
                 service_group_id: 5543a5d4-5d0a-e598-43df-5fb4953f588f
       x-private: true
       x-codegen-request-body-name: body
-      description: ''
+      description: Build a group of services from an array of collection properties
   '/services/{serviceId}/integrations':
     get:
       tags:
@@ -2697,6 +2700,8 @@ paths:
                       type: string
                     description:
                       type: string
+      description: ''
+      operationId: getServiceCalendarTemplates
   '/services/{serviceId}/calendar/templates/type':
     post:
       tags:
@@ -3548,6 +3553,8 @@ paths:
       security:
         - jwt: []
       x-codegen-request-body-name: body
+      operationId: updateUserNotificationPerferences
+      description: ''
   /oauth/exchange:
     post:
       tags:
@@ -3590,6 +3597,7 @@ paths:
           description: For ¯\_(ツ)/¯ errors
           content: {}
       x-codegen-request-body-name: body
+      operationId: security-oauth-exchange
   /token:
     post:
       tags:
@@ -4143,6 +4151,7 @@ paths:
                   next: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2'
       security:
         - jwt: []
+      operationId: ''
   '/organizations/{organizationId}/contact-import-configurations/{integration}':
     put:
       tags:
@@ -5079,7 +5088,7 @@ components:
           items:
             type: object
             allOf:
-              - $ref: '#/definitions/channel-input'
+              - $ref: '#/components/schemas/channel-input'
               - type: object
                 properties:
                   isActive:
@@ -5187,18 +5196,6 @@ components:
               type: string
             status:
               type: string
-            configuration:
-              type: array
-              items:
-                type: object
-                allOf:
-                  - $ref: '#/definitions/integration-configuration-input'
-                  - type: object
-                    properties:
-                      field_type:
-                        type: string
-                      name:
-                        type: string
             allows_mapping_fields:
               type: boolean
     integration-configuration-input:
@@ -5379,7 +5376,7 @@ components:
         field_values:
           type: object
           allOf:
-            - $ref: '#/definitions/service-collection-service-input'
+            - $ref: '#/components/schemas/service-collection-service-input'
             - type: object
               properties:
                 field_name:
