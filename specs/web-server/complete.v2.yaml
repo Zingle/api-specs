@@ -4160,7 +4160,7 @@ paths:
                   next: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2'
       security:
         - jwt: []
-      operationId: ''
+      operationId: getOrganizationEvents
   '/organizations/{organizationId}/contact-import-configurations/{integration}':
     put:
       tags:
