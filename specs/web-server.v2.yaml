@@ -433,13 +433,13 @@ paths:
                 - name: exanim vel
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: laborumtem
+                  id: "41111111-1111-1111-1111-111111111111"
                   createdAt: 1968-07-27T19:51:00.026Z
                   updatedAt: 1985-08-29T15:01:12.503Z
                 - name: et nostrud
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: 'voluptate '
+                  id: '41111111-1111-1111-1111-111111111111'
                   createdAt: 1942-02-13T11:49:56.528Z
                   updatedAt: 1942-11-16T16:21:02.881Z
     post:
@@ -1546,21 +1546,6 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: object
-                properties:
-                  configuration:
-                    type: object
-                    properties:
-                      ?
-                        : type: object
-                          properties: {}
-        required: false
       responses:
         202:
           description: ""
@@ -5142,9 +5127,6 @@ components:
     contact:
       title: Contact
       type: object
-      properties:
-        ?
-          : type: string
     channel-input:
       title: Channel Input
       required:
