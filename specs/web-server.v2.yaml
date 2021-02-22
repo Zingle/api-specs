@@ -1,0 +1,5705 @@
+openapi: 3.0.1
+info:
+  title: Zingle API (Current)
+  version: "2.0"
+servers:
+  - url: https://api.zingle.me/v2
+security:
+  - basic: []
+tags:
+  - name: Analytics
+  - name: Billing
+  - name: Calendar Events
+  - name: Contacts
+  - name: Contact Fields
+  - name: Contact Import Log
+  - name: CSV Import
+  - name: Feeds
+  - name: HotSOS
+  - name: Integrations
+  - name: Message Categories
+  - name: Messages
+    description: Something about messages
+  - name: Organizations
+  - name: Organization Contact Imports
+  - name: Phone Numbers
+  - name: Security
+  - name: Services
+  - name: Segments
+  - name: Service Collections
+  - name: Tags
+  - name: Templates
+  - name: Users
+  - name: Webhooks
+paths:
+  /services/{serviceId}/templates:
+    get:
+      tags:
+        - Templates
+      summary: List Templates
+      operationId: list-templates
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/template'
+              example:
+                - name: Welcome message
+                  body: Welcome to the Hotel California!
+                  id: 73a6f8ea-21a1-09f0-bb53-fc71f8a305f7
+                  createdAt: 1998-09-16T03:31:59.791Z
+                  updatedAt: 1991-07-17T01:43:16.160Z
+                - name: Checkout message
+                  body: We are sorry to see you go!
+                  id: a4564607-a0d2-3208-aff9-5dc535291a2c
+                  createdAt: 1972-09-01T00:28:56.859Z
+                  updatedAt: 1978-09-11T19:23:16.877Z
+                - name: Follow-up
+                  body: It looks like your requested item was delivered. Please let
+                    us know if you have any more questions.
+                  id: 26f989cf-4a40-7369-12b8-1d38565ac170
+                  createdAt: 1967-03-23T01:15:19.276Z
+                  updatedAt: 1965-01-27T08:09:50.060Z
+    post:
+      tags:
+        - Templates
+      summary: Create a template
+      operationId: create-template
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/template-input'
+        required: false
+      responses:
+        201:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/templates/{templateId}:
+    get:
+      tags:
+        - Templates
+      summary: Get a template
+      operationId: get-template
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/template'
+              example:
+                name: Welcome message
+                body: Welcome to the Hotel California!
+                id: f1e2cfd1-51e3-01b6-3b7a-2f1cdfad3261
+                createdAt: 2014-02-09T23:20:18.906Z
+                updatedAt: 2012-05-07T10:42:07.598Z
+    put:
+      tags:
+        - Templates
+      summary: Update template
+      operationId: update-template
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/template-input'
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Templates
+      summary: Delete template
+      operationId: delete-template
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: templateId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              example: {}
+  /services/{serviceId}/contact-fields:
+    get:
+      tags:
+        - Contact Fields
+      summary: List contact fields
+      operationId: list-contact-fields
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/contact-field'
+              example:
+                - name: iru
+                  type: string
+                  id: 814f8732-f50f-564b-3339-fae4abaf4bbc
+                  options:
+                    - dolore enim
+                    - occaecat sunt cupidatat dolore
+                    - laborum dolor ullamco exercitation
+                    - pariatur in
+                    - non aliquip Duis cupidatat
+                  createdAt: 1955-11-02T17:06:28.424Z
+                  updatedAt: 1960-01-05T06:32:46.094Z
+                - name: Lo
+                  type: boolean
+                  id: e89f4b5c-0a77-e924-cc6f-8c4685597918
+                  createdAt: 1950-04-05T09:52:16.360Z
+                  updatedAt: 2018-01-14T19:19:18.947Z
+    post:
+      tags:
+        - Contact Fields
+      summary: Create contact field
+      operationId: create-contact-field
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/contact-field-input'
+        required: false
+      responses:
+        201:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+        400:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                code: voluptate commodo irure consectetur culpa
+                description: 'dolore '
+        403:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                code: voluptate commodo irure consectetur culpa
+                description: 'dolore '
+      x-codegen-request-body-name: body
+  /services/{serviceId}/contact-fields/{contactFieldId}:
+    get:
+      tags:
+        - Contact Fields
+      summary: Get contact field
+      operationId: get-contact-field
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: contactFieldId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contact-field'
+              example:
+                name: Favorite flower
+                type: string
+                id: 9793cf65-c072-11fc-a19b-6bb07930bb0b
+                createdAt: 2004-08-28T03:32:07.596Z
+                updatedAt: 2014-03-05T19:36:26.433Z
+    put:
+      tags:
+        - Contact Fields
+      summary: Update contact field
+      operationId: update-contact-field
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: contactFieldId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/contact-field-input'
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+        400:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                code: voluptate commodo irure consectetur culpa
+                description: 'dolore '
+        403:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                code: voluptate commodo irure consectetur culpa
+                description: 'dolore '
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Contact Fields
+      summary: Delete contact field
+      operationId: delete-contact-field
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: contactFieldId
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 36
+            minLength: 36
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              example: {}
+  /services/{serviceId}/tags:
+    get:
+      tags:
+        - Tags
+      summary: List Tags
+      operationId: list-tags
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tag'
+              example:
+                - name: exanim vel
+                  textColor: '#AFD6B8'
+                  backgroundColor: '#AFD6B8'
+                  id: laborumtem
+                  createdAt: 1968-07-27T19:51:00.026Z
+                  updatedAt: 1985-08-29T15:01:12.503Z
+                - name: et nostrud
+                  textColor: '#AFD6B8'
+                  backgroundColor: '#AFD6B8'
+                  id: 'voluptate '
+                  createdAt: 1942-02-13T11:49:56.528Z
+                  updatedAt: 1942-11-16T16:21:02.881Z
+    post:
+      tags:
+        - Tags
+      summary: Create Tag
+      operationId: create-tag
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag-input'
+        required: false
+      responses:
+        201:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/tags/{tagId}:
+    get:
+      tags:
+        - Tags
+      summary: Get Tag
+      operationId: get-tag
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tag'
+              example:
+                - name: 'cupidatat '
+                  textColor: '#AFD6B8'
+                  backgroundColor: '#AFD6B8'
+                  id: esse aliqu
+                  createdAt: 1975-12-08T06:06:36.971Z
+                  updatedAt: 1973-11-20T17:27:46.011Z
+                - name: 'dosunt Ut '
+                  textColor: '#AFD6B8'
+                  backgroundColor: '#AFD6B8'
+                  id: et Duis ut
+                  createdAt: 2002-12-30T18:35:40.010Z
+                  updatedAt: 1983-10-05T11:09:11.602Z
+    put:
+      tags:
+        - Tags
+      summary: Update Tag
+      operationId: update-tag
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag-input'
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Tags
+      summary: Delete Tag
+      operationId: delete-tag
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              example: {}
+  /services/{serviceId}/messages:
+    post:
+      tags:
+        - Messages
+      summary: Send a message
+      operationId: send-message
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message-input'
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /users/me:
+    get:
+      tags:
+        - Users
+      summary: Get the current User
+      operationId: get-user
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  avatarUrl:
+                    type: string
+                  object-id:
+                    $ref: '#/components/schemas/object-id'
+                  timestamps:
+                    $ref: '#/components/schemas/timestamps'
+                  user-profile-input:
+                    $ref: '#/components/schemas/user-profile-input'
+              example:
+                firstName: Elias
+                lastName: Smythe
+                title: Supervisor
+                signature: '- ES'
+                email: esmythe@zingleme.com
+                username: esmythe@zingleme.com
+                id: 3cc50f64-4c22-3d51-63a0-e572e98c31a5
+                createdAt: 1984-08-14T20:29:33.314Z
+                updatedAt: 1975-06-18T17:39:34.524Z
+    put:
+      tags:
+        - Users
+      summary: Update the current User
+      operationId: update-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/user-profile-input'
+                - type: object
+                  properties:
+                    avatar:
+                      $ref: '#/components/schemas/attachment'
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/segments:
+    get:
+      tags:
+        - Segments
+      summary: List Segments
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/segment'
+              example:
+                - name: eu sint e
+                  conditions:
+                    - method: commodo irure et cillum
+                      source: velit consectetur dolor
+                      value: esse ad
+                    - method: et cupida
+                      source: id dolor elit
+                      value: qui magna
+                    - method: nulla sed
+                      source: sit dolore cupidatat reprehenderit veniam
+                      value: quis ut
+                    - method: reprehenderit ut do
+                      source: enim sint nulla cupidata
+                      value: nostrud
+                    - method: velit id
+                      source: nisi occaecat officia ullamco
+                      value: Lorem sunt officia
+                  id: 3ad0a1bb-f54c-235e-49a0-efd36c177a0b
+                  backgroundColor: dolor magna
+                  textColor: in occaecat Lorem tempor anim
+                  createdAt: 2018-01-17T13:22:22.898Z
+                  updatedAt: 1984-03-15T02:01:20.855Z
+                - name: Lorem
+                  conditions:
+                    - method: culpa
+                      source: proident
+                      value: cupidatat deserunt laborum
+                    - method: ullamco laborum in enim
+                      source: sint tempor non pariatur
+                      value: aute labore
+                    - method: minim aliqua
+                      source: occaecat est Excepteur
+                      value: et laboris sit cupidatat
+                    - method: id culpa velit
+                      source: ex id mollit non
+                      value: est pariatur exercitation magna
+                  id: 0fcc2a5d-1f9b-9689-e8f3-81a95aa237e6
+                  backgroundColor: deserunt
+                  textColor: esse occaecat Ut velit
+                  createdAt: 1953-06-02T21:21:31.790Z
+                  updatedAt: 1951-10-16T05:20:35.340Z
+                - name: repreh
+                  conditions:
+                    - method: quis culpa labore eu
+                      source: ut cillum
+                      value: in nisi adipisicing ut
+                    - method: ad sunt
+                      source: minim ex nostrud in
+                      value: incididunt nostrud deserunt dolore non
+                    - method: eiusmod fugiat
+                      source: aliqui
+                      value: Duis et deserunt
+                    - method: do nisi
+                      source: in
+                      value: dolore aute deserunt
+                    - method: sit
+                      source: id minim dolor
+                      value: sed proident
+                  id: 5aa727ea-bcfe-5ad4-9425-a344788eb97c
+                  backgroundColor: adipisicing Lorem es
+                  textColor: pariatur sed amet in
+                  createdAt: 2009-04-16T06:25:35.712Z
+                  updatedAt: 1987-09-18T15:31:29.347Z
+    post:
+      tags:
+        - Segments
+      summary: Create Segment
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/segment-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/segments/{segmentId}:
+    get:
+      tags:
+        - Segments
+      summary: Get Segment
+      operationId: get-segment
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/segment'
+              example:
+                name: ulla
+                conditions:
+                  - comparisonMethod: proident non et in
+                    comparisonSource: adipisicing
+                    comparisonValue: nostrud esse irure proident sint
+                  - comparisonMethod: qui aliquip aute
+                    comparisonSource: sint non deserunt
+                    comparisonValue: adipisicing reprehenderit aliqua occaecat
+                  - comparisonMethod: sit nostrud
+                    comparisonSource: aliqua esse
+                    comparisonValue: id pariatur
+                  - comparisonMethod: voluptate commodo culpa aliqua sunt
+                    comparisonSource: in ex veniam Duis
+                    comparisonValue: reprehenderit
+                id: 7b0719ab-b942-6c7d-6607-409461bb59b6
+                backgroundColor: commodo et ipsum dolore
+                textColor: consequat deserunt
+                createdAt: 1984-08-15T07:54:21.811Z
+                updatedAt: 2012-03-04T08:03:02.733Z
+    put:
+      tags:
+        - Segments
+      summary: Update Segment
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/segment-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+    delete:
+      summary: Delete Segment
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: segmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/contacts/ref/{externalContactId}:
+    get:
+      tags:
+        - Contacts
+      summary: Get Contact by customer-defined ID
+      operationId: get-contact-by-external
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: externalContactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        307:
+          description: ""
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+        - Contacts
+      summary: Update Contact by customer-defined ID
+      operationId: update-contact-by-external
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: externalContactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        307:
+          description: ""
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+        - Contacts
+      summary: Delete Contact by customer-defined ID
+      operationId: delete-contact-by-external
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: externalContactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        307:
+          description: ""
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/contacts/{contactId}:
+    get:
+      tags:
+        - Contacts
+      summary: Get Contact
+      operationId: get-contact
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  avatarUrl:
+                    type: string
+                  contact-input:
+                    $ref: '#/components/schemas/contact-input'
+                  object-id:
+                    $ref: '#/components/schemas/object-id'
+                  timestamps:
+                    $ref: '#/components/schemas/timestamps'
+              example:
+                firstName: Cindy
+                lastName: Smith
+                title: Ms.
+                tags:
+                  - Checked In
+                  - VIP
+                channels:
+                  - type: phone_number
+                    value: +14065559898
+                    isActive: true
+                externalId: a09sd80a9sd809a8sd098asd
+                conversationProperties:
+                  isClosed: true
+                  isUnread: false
+                notes: This is a very nice person
+                contactFields:
+                  - contactFieldName: Checkin Date
+                    value: 2018-08-30
+                  - contactFieldName: Room Number
+                    value: 200
+    put:
+      summary: Update Contact
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contactId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/contact-input'
+                - type: object
+                  properties:
+                    avatar:
+                      $ref: '#/components/schemas/attachment'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      summary: Delete Contact
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: contactId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/contacts:
+    get:
+      tags:
+        - Contacts
+      summary: List Contacts
+      operationId: list-contacts
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: mentions
+          in: query
+          description: Filter contacts only with read or unread mentions in feeds
+          schema:
+            type: string
+            enum:
+              - read
+              - unread
+          required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  allOf:
+                    - type: object
+                      properties:
+                        avatarUrl:
+                          type: string
+              example:
+                - firstName: Cindy
+                  lastName: Smith
+                  title: Ms.
+                  tags:
+                    - Checked In
+                    - VIP
+                  channels:
+                    - type: phone_number
+                      value: +14065559898
+                      isActive: true
+                  externalId: a09sd80a9sd809a8sd098asd
+                  conversationProperties:
+                    isClosed: true
+                    isUnread: false
+                  notes: This is a very nice person
+                  contactFields:
+                    - contactFieldName: Checkin Date
+                      value: 2018-09-03
+                    - contactFieldName: Room Number
+                      value: 220
+                - firstName: Bob
+                  lastName: Williams
+                  title: Mr.
+                  tags:
+                    - VIP
+                  channels:
+                    - type: phone_number
+                      value: +18585551212
+                      isActive: true
+                  conversationProperties:
+                    isClosed: true
+                    isUnread: false
+                  contactFields: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Contacts
+      summary: Create Contact
+      operationId: create-contact
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: |-
+          One of the following is required:
+
+          * firstName
+          * lastName
+          * externalId
+          * at least one channel object
+          * at least one contactFields object
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/contact-input'
+                - type: object
+                  properties:
+                    avatar:
+                      $ref: '#/components/schemas/attachment'
+        required: false
+      responses:
+        200:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/messages/{messageId}/categories/{messageCategoryId}:
+    post:
+      tags:
+        - Messages
+      summary: Apply message category
+      operationId: apply-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+        - Messages
+      summary: Remove message category
+      operationId: remove-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/message-categories:
+    get:
+      tags:
+        - Message Categories
+      summary: List Message Categories
+      operationId: list-message-categories
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+    post:
+      tags:
+        - Message Categories
+      summary: Create Message Category
+      operationId: create-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message-category-input'
+        required: false
+      responses:
+        201:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /services/{serviceId}/message-categories/{messageCategoryId}:
+    get:
+      tags:
+        - Message Categories
+      summary: Get Message Category
+      operationId: get-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message-category'
+              example:
+                id: 6075706b-46ca-98d7-104f-e978d009d133
+                name: culpa
+                createdAt: 2014-04-02T19:56:46.008Z
+                updatedAt: 1964-02-07T14:01:54.035Z
+    put:
+      tags:
+        - Message Categories
+      summary: Update Message Category
+      operationId: update-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message-category-input'
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Message Categories
+      summary: Delete Message Category
+      operationId: delete-message-category
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageCategoryId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              example: {}
+  /services/{serviceId}/messages/{messageId}/categories:
+    put:
+      tags:
+        - Messages
+      summary: Set message categories
+      operationId: set-message-categories
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              description: 'Array of category names to set on the message.  All other
+                categories will be '
+              items:
+                type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: API URI of the resource that was saved
+              schema:
+                type: string
+          content:
+            application/json:
+              example: {}
+      x-codegen-request-body-name: body
+  /analytics/service-group:
+    post:
+      tags:
+        - Analytics
+      summary: Build a group of services from an array of collection properties
+      operationId: build-service-group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_id:
+                  pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+                  type: string
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service_group_id:
+                    pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+                    type: string
+              example:
+                service_group_id: 5543a5d4-5d0a-e598-43df-5fb4953f588f
+      x-private: true
+      x-codegen-request-body-name: body
+  /services/{serviceId}/integrations:
+    get:
+      tags:
+        - Integrations
+      summary: Get a list of all integrations for a service
+      operationId: get-integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    status:
+                      type: string
+              example:
+                - code: springer
+                  name: Springer
+                  status: connected
+                - code: opera
+                  name: Opera
+                  status: connected
+                - code: zapier
+                  name: Zapier
+                  status: connected
+                - code: hotsos
+                  name: HotSOS
+                  status: connected
+                - code: bitly
+                  name: Bitly
+                  status: connected
+                - code: email
+                  name: Email
+                  status: needs_attention
+                - code: sftp
+                  name: SFTP
+                  status: needs_attention
+                - code: mindbody
+                  name: MindBody
+                  status: disconnected
+                - code: tripadvisor
+                  name: TripAdvisor
+                  status: connected
+      x-codegen-request-body-name: body
+  /services/{serviceId}/integrations/{integration}:
+    get:
+      tags:
+        - Integrations
+      summary: Get a single integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/integration'
+              example:
+                code: springer
+                name: Springer
+                status: connected
+                field_mapping:
+                  begin_at_row: 1
+                  status: awaiting_receipt
+                configuration:
+                  username:
+                    code: username
+                    name: Username
+                    field_type: username
+                    value: import_5c42dfdd992e4_1
+                  password:
+                    code: password
+                    name: Password
+                    field_type: password
+                    value: oacazoahospiacha
+    put:
+      tags:
+        - Integrations
+      summary: Update an integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  configuration:
+                    type: object
+                    properties:
+                      ?
+                        : type: object
+                          properties: {}
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Integrations
+      summary: Enable an integration for a service
+      operationId: enable-integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth_token:
+                  type: string
+        required: false
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Integrations
+      summary: Disable an integration
+      description: Disables an integration, deletes all integration config values,
+        removes an integration-related auth tokens
+      operationId: disable-integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+  /services/{serviceId}/integrations/{integration}/field-mapping:
+    get:
+      summary: Get the field mapping for an integration
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    put:
+      tags:
+        - Integrations
+      summary: Create or update a field mapping for an integration
+      operationId: update-field-mapping
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/integration-field-mapping-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Integrations
+      summary: Delete a field mapping for an integration
+      operationId: delete-field-mapping
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/integrations/mindbody/activation-link:
+    get:
+      tags:
+        - Integrations
+      summary: Generate an activation link for MindBody
+      operationId: get-mindbody-activation-link
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+              example:
+                link: https://mindbodyonline.com/foo/bar
+  /services/{serviceId}/webhooks:
+    get:
+      tags:
+        - Webhooks
+      summary: List Webhooks
+      operationId: list-webhooks
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook'
+              example:
+                - id: 2d338bc5-16a3-9eff-9b52-5f01cfdae265
+                  url: https://Hv
+                  headers:
+                    - key: eiusmod
+                      value: in commodo ipsum esse
+                    - key: voluptate
+                      value: ex
+                  events:
+                    - et el
+                    - veniam laboris eiusmod do
+                    - id
+                  enabled: true
+                - id: cfdbad62-52ff-89ba-6da1-48121dbebde6
+                  url: https://dl
+                  headers:
+                    - key: Ut commodo veniam
+                      value: occaecat eiusmod ut
+                    - key: qui anim ut ad velit
+                      value: nisi Duis incididunt fugiat do
+                  events:
+                    - laboris velit
+                    - incididunt voluptate nisi e
+                    - enim consequat
+                    - proident
+                    - Excepteur ipsum culpa dolore
+                  enabled: true
+                - id: d1359016-5b9f-3076-349b-5e520392019e
+                  url: http://gKh
+                  headers:
+                    - key: veniam et
+                      value: adi
+                    - key: in elit ut enim pariatur
+                      value: ea do
+                  events:
+                    - exercitation
+                    - enim magna dolor nisi culpa
+                    - d
+                    - ullamco
+                    - ipsum
+                  enabled: false
+    put:
+      tags:
+        - Webhooks
+      summary: Update All Webhooks
+      description: 'Sets '
+      operationId: update-webhooks
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook-input'
+              example:
+                - url: https://ZJ
+                  headers:
+                    - key: reprehenderit officia sunt enim
+                      value: do dolor ut ipsum
+                    - key: in Ut ex exercitation irure
+                      value: ut non veniam
+                    - key: anim qui proident dolor laborum
+                      value: ipsum
+                  events:
+                    - sint occaecat
+                    - qui
+                    - commodo
+                    - culpa cupidatat anim id
+                    - dolor
+                  enabled: true
+                - url: https://vF
+                  headers:
+                    - key: minim dolore dolore adipisicing
+                      value: anim veniam nulla proident
+                    - key: exercitation ea occaecat
+                      value: dolore
+                    - key: dolore Lorem irure
+                      value: proident ullamco minim tempo
+                    - key: proident dolore elit
+                      value: tempor amet aliquip
+                  events:
+                    - sint commodo ut elit Excepteur
+                  enabled: false
+                - url: https://DG
+                  headers:
+                    - key: elit
+                      value: aute dolore culpa en
+                    - key: tempor veniam
+                      value: l
+                    - key: est tempor labore
+                      value: deserunt Lorem reprehenderit
+                    - key: eu aliqua nostrud ex
+                      value: dolore consectetur ipsum sed
+                    - key: minim dolor occaecat
+                      value: Excepteur
+                  events:
+                    - aliqua in deserunt
+                    - elit dolore deserunt cillum occaecat
+                    - in in laborum aute
+                    - cillum cupidatat
+                  enabled: true
+                - url: https://iD
+                  headers:
+                    - key: Excepteur
+                      value: voluptate cupidatat ipsum
+                    - key: irure ut
+                      value: consequat
+                    - key: labor
+                      value: ut
+                    - key: dolor Lorem velit
+                      value: reprehenderit
+                  events:
+                    - dolor irure aute sed
+                  enabled: false
+                - url: http://nwl
+                  headers:
+                    - key: Lorem eu in
+                      value: exercitation aliquip cillum dolor est
+                  events:
+                    - amet eu sint
+                    - dolor minim dolore mollit in
+                    - do officia
+                    - exercitation ex pariatur
+                  enabled: false
+    post:
+      tags:
+        - Webhooks
+      summary: Create a Webhook
+      operationId: create-webhook
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/webhooks/{webhookId}:
+    get:
+      tags:
+        - Webhooks
+      summary: Get a webhook
+      operationId: get-webhook
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook'
+              example:
+                id: e13a4a69-df8b-a2bb-c59a-c16244b35560
+                url: http://AFG
+                headers:
+                  - key: id aliqua cillum dolor
+                    value: ullamco consequat est
+                events:
+                  - aliqu
+                enabled: true
+    put:
+      tags:
+        - Webhooks
+      summary: Update a Webhook
+      operationId: update-webhook
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Webhooks
+      summary: Create a Webhook
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook-input'
+        required: false
+      responses:
+        201:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Webhooks
+      summary: Delete a Webhook
+      operationId: delete-webhook
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /service-collections:
+    get:
+      tags:
+        - Service Collections
+      summary: List Service Collections for user
+      description: Lists all service collections that a current user has access to
+        through their Service roles
+      operationId: list-user-service-collections
+      parameters:
+        - name: service_id
+          in: query
+          description: "\tOnly return collections containing the specified service"
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/service-collection'
+              example:
+                - id: d3c3c51f-0572-44df-a146-b9c38cc7cc66
+                  name: Hotel California Grp.
+                  fields:
+                    - id: 1b4a7b4d-9053-4d2e-be19-c7411bde50a8
+                      name: Region
+                      values:
+                        - East
+                        - West
+    post:
+      tags:
+        - Service Collections
+      summary: Create a Service Collection
+      operationId: create-service-collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-collection-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          headers:
+            Location:
+              description: URL to access the service collection
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+      x-codegen-request-body-name: body
+  /service-collections/all:
+    get:
+      tags:
+        - Service Collections
+      summary: List all Service Collections
+      description: List all service collections
+      operationId: list-service-collections
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/service-collection'
+              example:
+                - id: d3c3c51f-0572-44df-a146-b9c38cc7cc66
+                  name: Hotel California Grp.
+                  fields:
+                    - id: 1b4a7b4d-9053-4d2e-be19-c7411bde50a8
+                      name: Region
+                      values:
+                        - East
+                        - West
+      x-private: true
+  /service-collections/{serviceCollectionId}/services:
+    get:
+      tags:
+        - Service Collections
+      summary: List Service Collection Services
+      operationId: list-service-collection-services
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/service-collection-service'
+              example:
+                - id: urn:uuid:b1fb5287-a18f-e912-d902-2f29d8d43784
+                  name: commodo cillum
+                  field_values:
+                    field_values:
+                      - field_id: 35e18d4b-a706-fcd7-62f3-17f38e0ce301
+                        value: sit
+                      - field_id: urn:uuid:5bc8bf7d-8020-0725-e206-baf3120b8af2
+                        value: dolore laborum aliquip exercitation eiusmod
+                      - field_id: urn:uuid:6e342ad0-ccc4-cb51-6b24-a81547a08e1c
+                        value: deserunt non cillum laborum
+                    field_name: incididunt in cupidatat
+                - id: f5505cb6-23fe-6929-2422-a5b4766280f1
+                  name: pariatur cillum laboris minim aliqua
+                  field_values:
+                    field_values:
+                      - field_id: 0152b720-74d9-888c-0e1e-5d02d3f0d4eb
+                        value: amet
+                      - field_id: 6505d400-9964-53eb-13bc-a0d73fbbf4db
+                        value: sunt et magna
+                    field_name: consectetur sit proident
+  /service-collections/{serviceCollectionId}/services/{serviceId}:
+    put:
+      tags:
+        - Service Collections
+      summary: Update service for service collection
+      operationId: update-service-for-service-collection
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-collection-service-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Service Collections
+      summary: Add service to service collection
+      operationId: add-service-to-service-collection
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-collection-service-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service-collection-service-input'
+              example:
+                field_values:
+                  - field_id: urn:uuid:fa73dc0e-63b1-fa3f-2031-4bede189e0d8
+                    value: amet nostru
+                  - field_id: urn:uuid:703b30df-d5d2-cb05-c3db-d09dcfdc8571
+                    value: eu in ad dolor
+      x-private: true
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Service Collections
+      summary: Remove service from service collection
+      operationId: remove-service-from-service-collection
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /service-collections/{serviceCollectionId}/fields:
+    post:
+      tags:
+        - Service Collections
+      summary: Create Service Collection Field
+      operationId: create-service-collection-field
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-collection-field-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+      x-codegen-request-body-name: body
+  /service-collections/{serviceCollectionId}/fields/{fieldId}:
+    get:
+      tags:
+        - Service Collections
+      summary: Update service collection field
+      operationId: update-service-collection-field
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fieldId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Service Collections
+      summary: Delete field from Service Collection
+      operationId: delete-service-collection-field
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fieldId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /service-collections/{serviceCollectionId}:
+    put:
+      tags:
+        - Service Collections
+      summary: Update Service Collection
+      operationId: update-service-collection
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-collection-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Service Collections
+      summary: Delete a Service Collection
+      operationId: delete-service-collection
+      parameters:
+        - name: serviceCollectionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /services/{serviceId}/analytics/sign-url:
+    get:
+      tags:
+        - Analytics
+      summary: Sign Mode Analytics URL
+      operationId: sign-mode-url
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: report_id
+          in: query
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          schema:
+            type: string
+        - name: end_date
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /services/{serviceId}/analytics/report-list:
+    get:
+      tags:
+        - Analytics
+      summary: Get List of Mode Analytics Reports
+      operationId: get-mode-reports
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /services/{serviceId}/messages/{messageId}:
+    delete:
+      tags:
+        - Messages
+      operationId: delete-message
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /services/{serviceId}/contact-log:
+    get:
+      tags:
+        - Contact Import Log
+      summary: Get a list of entries from the Contact Import Log
+      operationId: list-contact-import-log
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: range[start]
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: range[end]
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: query
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/contact-log'
+              example:
+                - result: failure
+                  action: ignored
+                  name: nulla sint i
+                  phone: ipsum elit
+                  email: amet
+                  source: in cillum aute velit
+                  receivedAt: 1952-12-12T02:42:43.540Z
+                  matchedOn: phone
+                  errors:
+                    - ea anim dolor exercitation dolor
+                    - reprehenderit
+                    - velit sed nostrud dolore in
+                    - elit
+  /saml/idps/lookup:
+    get:
+      summary: Look up an IDP by domain code
+      parameters:
+        - name: domainCode
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  domainCode:
+                    type: string
+                  metadataUri:
+                    type: string
+                  issuerUri:
+                    type: string
+                  signOnUri:
+                    type: string
+                  logoutUri:
+                    type: string
+                  certificate:
+                    type: string
+                  requireEmail:
+                    type: boolean
+  /services/{serviceId}/calendar/events:
+    get:
+      tags:
+        - Calendar Events
+      summary: List all calendar events
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    uuid:
+                      type: string
+                      format: uuid
+                    externalId:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    startsAt:
+                      type: string
+                      format: date-time
+                    endsAt:
+                      type: string
+                      format: date-time
+                    allDay:
+                      type: boolean
+                    attendees:
+                      type: array
+                      items:
+                        type: string
+                        format: uuid
+                    type:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        uuid:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                              type:
+                                type: string
+                              label:
+                                type: string
+                              template:
+                                type: boolean
+                              eventType:
+                                type: string
+                                format: uuid
+    put:
+      tags:
+        - Calendar Events
+      summary: Update calendar event
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                attendees:
+                  uniqueItems: true
+                  type: array
+                  items:
+                    type: string
+                type:
+                  type: string
+                  description: |-
+                    **We don't allow type updates**. This is because different types have differents fields.
+                    The type must be equal to the type that the calendar event already has assigned, otherwise, an error is thrown.
+                  format: uuid
+                title:
+                  type: string
+                description:
+                  type: string
+                startsAt:
+                  type: string
+                  format: date-time
+                endsAt:
+                  type: string
+                  format: date-time
+                allDay:
+                  type: boolean
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Calendar Events
+      summary: Create new calendar event
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - allDay
+                - attendees
+                - endsAt
+                - startsAt
+                - title
+                - type
+              type: object
+              properties:
+                attendees:
+                  uniqueItems: true
+                  type: array
+                  items:
+                    type: string
+                type:
+                  type: string
+                  format: uuid
+                title:
+                  type: string
+                description:
+                  type: string
+                startsAt:
+                  type: string
+                  format: date-time
+                endsAt:
+                  type: string
+                  format: date-time
+                allDay:
+                  type: boolean
+        required: false
+      responses:
+        201:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /calendar/templates:
+    get:
+      tags:
+        - Calendar Events
+      summary: List of all available templates
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    displayName:
+                      type: string
+                    description:
+                      type: string
+  /services/{serviceId}/calendar/templates/type:
+    post:
+      tags:
+        - Calendar Events
+      summary: Create a Event Type with Template
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/csv-import/upload:
+    post:
+      tags:
+        - CSV Import
+      summary: Upload CSV for manual import
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  headers:
+                    type: array
+                    items:
+                      type: object
+                  sample:
+                    type: array
+                    items:
+                      type: object
+  /services/{serviceId}/csv-import/process:
+    post:
+      tags:
+        - CSV Import
+      summary: Process last updated CSV
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                beginAtRow:
+                  type: integer
+                headerMap:
+                  type: array
+                  items:
+                    type: object
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/usage:
+    get:
+      tags:
+        - Billing
+      summary: Current usage
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  purchased:
+                    type: integer
+  /services/{serviceId}/calendar/events/bulk-upsert:
+    post:
+      tags:
+        - Calendar Events
+      summary: Bulk edit calendar events
+      description: |-
+        Bulk create and edit calendar events. If the event object has **uuid** the event will be updated, otherwise, a new event will be created.
+
+        If an error occurs, all changes made by the request will be reverted and an error message is returned with an appropriate HTTP code and more information in the response body.
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                events:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      uuid:
+                        type: string
+                        description: Create new calendar event if not present
+                        format: uuid
+                      attendees:
+                        uniqueItems: true
+                        type: array
+                        items:
+                          type: object
+                          allOf:
+                            - type: object
+                              format: uuid
+                      title:
+                        type: string
+                      type:
+                        type: string
+                        description: |-
+                          **We don't allow type updates**. This is because different types have differents fields.
+                          In an update, the type must be equal to the type that the calendar event already has assigned, otherwise, an error is thrown.
+                        format: uuid
+                      description:
+                        type: string
+                      startsAt:
+                        type: string
+                        format: date-time
+                      endsAt:
+                        type: string
+                        format: date-time
+                      allDay:
+                        type: boolean
+        required: false
+      responses:
+        204:
+          description: Successfully upserted all events
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: Invalid request parameters, for example a required field is
+            missing or in update the type missmatch the event type.
+          content: {}
+        404:
+          description: If at least one event to update doesn’t exist, the whole upsert
+            operation will be aborted and a 404 returned.
+          content: {}
+        500:
+          description: Internal error
+          content: {}
+      security:
+        - basic: []
+      x-codegen-request-body-name: body
+  /services/{serviceId}/calendar/events/bulk-delete:
+    delete:
+      tags:
+        - Calendar Events
+      summary: Bulk delete calendar events
+      description: |-
+        Bulk delete calendar events.
+
+        If an error occurs, all changes made by the request will be reverted and an error message is returned with an appropriate HTTP code and more information in the response body.
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Successfully deleted all events.
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: If at least one event to delete doesn't exist, the whole delete
+            operation will be reverted and a 404 returned.
+          content: {}
+        500:
+          description: Internal server error
+          content: {}
+      security:
+        - basic: []
+      x-codegen-request-body-name: body
+  /services/{serviceId}/users:
+    get:
+      tags:
+        - Users
+      summary: List Users
+      operationId: list-users
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+              example:
+                - id: 34439a01-1118-8e94-daa1-9c2dda874d8e
+                  firstName: Duis
+                  lastName: n
+                  createdAt: 2005-07-16T21:59:16.306Z
+                  updatedAt: 2012-02-20T08:42:29.242Z
+                  hotsosLogin: si
+                  title: ""
+                  signature: pariatur c
+                  phone: 'ullamco '
+                  email: off
+                  username: cupidata
+                - id: f053a006-1cd6-6d0c-d299-0b47efa1608c
+                  firstName: 'sit ea in '
+                  lastName: v
+                  createdAt: 1961-09-24T15:42:04.121Z
+                  updatedAt: 1968-07-21T10:20:47.026Z
+                  hotsosLogin: 'et aliqua '
+                  title: ""
+                  signature: incidid
+                  phone: dolo
+                  email: ex
+                  username: enim co
+                - id: fbdd60da-d024-fbcf-ffb2-2ed166b94287
+                  firstName: dolor
+                  lastName: e
+                  createdAt: 1967-11-25T09:34:37.790Z
+                  updatedAt: 1958-01-15T10:41:31.735Z
+                  hotsosLogin: Ut Duis
+                  title: ut u
+                  signature: 'et dolore '
+                  phone: vo
+                  email: culpa e
+                  username: inci
+                - id: 7b40ec1d-f511-7787-5c81-ea0d6af44488
+                  firstName: culpa
+                  lastName: ea
+                  createdAt: 1993-05-09T12:38:21.994Z
+                  updatedAt: 1951-06-12T19:32:52.888Z
+                  hotsosLogin: nisi adi
+                  title: mol
+                  signature: ut Ut anim
+                  phone: 'et mollit '
+                  email: enim ame
+                  username: c
+    post:
+      summary: Create User
+      operationId: create-user
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user-create-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/features/{featureCode}:
+    post:
+      tags:
+        - Services
+      summary: Add feature to service
+      operationId: add-feature
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: featureCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+        - Services
+      summary: Remove feature from service
+      operationId: remove-feature
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: featureCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /phone-numbers/provision:
+    post:
+      tags:
+        - Phone Numbers
+      summary: Provision a phone number
+      operationId: provision-phone-number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/phone-number-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/channels:
+    post:
+      tags:
+        - Services
+      summary: Add service channel
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service-channel-input'
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /services/{serviceId}/zings/{zingId}/start:
+    post:
+      summary: Start a new workflow for the specified contact
+      description: Receive a contact id, external id or phone number to identify a
+        contact and start the workflow specified in the url.
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: zingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        required: false
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        500:
+          description: ""
+          content: {}
+      x-codegen-request-body-name: body
+  /provision:
+    post:
+      tags:
+        - Services
+      summary: Provision one or more accounts & services
+      operationId: provision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - accounts
+                - notifyAdminUsers
+              type: object
+              properties:
+                notifyAdminUsers:
+                  type: boolean
+                accounts:
+                  type: array
+                  items:
+                    required:
+                      - billingDayOfMonth
+                      - name
+                      - salesforceId
+                    type: object
+                    properties:
+                      name:
+                        maxLength: 255
+                        minLength: 1
+                        type: string
+                      billingDayOfMonth:
+                        maximum: 31
+                        minimum: 1
+                        type: integer
+                      salesforceId:
+                        maxLength: 100
+                        minLength: 10
+                        type: string
+                      industry:
+                        maxLength: 50
+                        minLength: 0
+                        type: string
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - jwt: []
+      x-private: true
+      x-codegen-request-body-name: body
+  /services/{serviceId}/feeds/{feedId}/notes:
+    post:
+      tags:
+        - Feeds
+      summary: Add an internal note to a Feed
+      description: "Add an internal note to a Feed. Mentions can be added with the\
+        \ following tags:\n- If you want to mention a User: {u@xxx-xxx-xxx} \n- If\
+        \ you want to mention a whole Team: {t@xxx-xxx-xxx}\n\nWhere the \"xxx-xxx-xxx\"\
+        \ is the user or team's UUID.\n\nFor example:\n```\n{\n  \"body\": \"We need\
+        \ help here! {u@646349de-3d3f-4895-9eec-c3c85b9b16f5} {t@85c0a712-c618-46f8-b1e3-a20bdc0feeb3}\"\
+        \n}\n```"
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: feedId
+          in: path
+          description: Feed's UUID
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+        required: false
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /users/account-access:
+    get:
+      tags:
+        - Users
+      summary: List account access history
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  currentPage:
+                    type: integer
+                  perPage:
+                    type: integer
+                  lastPage:
+                    type: integer
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          enum:
+                            - active
+                            - expired
+                            - revoked
+                        expiredAt:
+                          type: string
+                          format: date-time
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+      security:
+        - jwt: []
+    post:
+      tags:
+        - Users
+      summary: Grant account access
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - jwt: []
+    delete:
+      tags:
+        - Users
+      summary: Revoke account access
+      responses:
+        204:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - jwt: []
+  /services/{serviceId}/hotsos/test-reservations:
+    post:
+      tags:
+        - HotSOS
+      summary: Test HotSOS contact integration
+      operationId: hotsos-contact-test
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  required:
+                    - ProfileID
+                    - SortValue
+                    - Status
+                  type: object
+                  properties:
+                    VIP:
+                      type: boolean
+                    FirstName:
+                      type: string
+                    LastName:
+                      type: string
+                    RoomNumber:
+                      type: string
+                    Email:
+                      type: string
+                      format: email
+                    ProfileID:
+                      type: string
+                    Arrival:
+                      type: string
+                      format: date-time
+                    Departure:
+                      type: string
+                      format: date-time
+                    Status:
+                      type: string
+                      enum:
+                        - CHECKED_IN
+                        - CANCELLED
+                        - CHECKED_OUT
+                        - RESERVED
+                    SpecialRequests:
+                      type: string
+                    Salutation:
+                      type: string
+                    Phone:
+                      type: string
+                    Country:
+                      type: string
+                    Group:
+                      type: object
+                      properties:
+                        ID:
+                          type: string
+                    ExtendedAttributes:
+                      type: object
+                      properties:
+                        ExtendedAttribute:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                              enum:
+                                - HOME
+                                - MOBILE
+                                - BUSINESS
+                            Value:
+                              type: object
+                              properties:
+                                '#text':
+                                  type: string
+                                  description: Phone Number
+                                  example: +14065551212
+                    SortValue:
+                      type: string
+                      format: date-time
+              example:
+                - ID: "902914"
+                  VIP: null
+                  ExtendedAttributes:
+                    ExtendedAttribute:
+                      - Name: HOME
+                        Value:
+                          '@xsi:type': xsd:string
+                          '#text': (203) 555-3396
+                      - Name: MOBILE
+                        Value:
+                          '@xsi:type': xsd:string
+                          '#text': (517) 555-3678
+                  FirstName: Alexander
+                  LastName: Parker
+                  RoomNumber: "4333"
+                  Email: edyth.gleason@example.com
+                  ProfileID: "647999"
+                  Arrival: 2020-07-29T10:40:29-07:00
+                  Departure: 2020-08-08T10:40:29-07:00
+                  Status: CHECKED_IN
+                  SpecialRequests: NEWSPAPER
+                  Salutation: Mr.
+                  Phone: (332) 555-4998
+                  Country: US
+                  Group:
+                    ID: "8454545"
+                  SortValue: 2020-08-20T10:40:29-07:00
+      x-private: true
+  /services/{serviceId}/contacts/export:
+    get:
+      tags:
+        - Contacts
+      summary: Export contacts
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contactIds:
+                  type: array
+                  description: Should contact integer ids.
+                  items:
+                    type: integer
+                searchTerm:
+                  type: string
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      comparisonMethodCode:
+                        type: string
+                      comparisonSource:
+                        type: string
+        required: false
+      responses:
+        200:
+          description: CSV when given a list of contact integer ids and that list
+            is under the limit that is reasonable to stream.
+          content:
+            application/json:
+              schema:
+                type: object
+        204:
+          description: When request is received and successfully queued up for export.
+          content: {}
+        401:
+          description: When request is not properly authorized.
+          content: {}
+        404:
+          description: When service is not found
+          content: {}
+      x-codegen-request-body-name: body
+  /notification/{userId}/preferences:
+    put:
+      summary: Update notification preferences
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: User ID
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                desktop:
+                  maximum: 15
+                  minimum: 0
+                  type: integer
+                  format: int32
+                mobile:
+                  maximum: 15
+                  minimum: 0
+                  type: integer
+                  format: int32
+                email:
+                  maximum: 15
+                  minimum: 0
+                  type: integer
+                  format: int32
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      uuid:
+                        type: string
+                        format: uuid
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      status:
+                        type: string
+                  desktop:
+                    maximum: 15
+                    minimum: 0
+                    type: integer
+                  mobile:
+                    maximum: 15
+                    minimum: 0
+                    type: integer
+                  email:
+                    maximum: 15
+                    minimum: 0
+                    type: integer
+      security:
+        - jwt: []
+      x-codegen-request-body-name: body
+  /oauth/exchange:
+    post:
+      tags:
+        - Security
+      summary: Exchange an access code for a jwt token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - code
+                - provider
+              type: object
+              properties:
+                provider:
+                  type: string
+                  description: Either provider code or IDP id.
+                code:
+                  type: string
+                  description: Access code from successful oauth request.
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT Token for user.
+        400:
+          description: For various bad responses, body of response should contain
+            a reason.
+          content: {}
+        404:
+          description: For unknown identities or providers.
+          content: {}
+        418:
+          description: For ¯\_(ツ)/¯ errors
+          content: {}
+      x-codegen-request-body-name: body
+  /token:
+    post:
+      tags:
+        - Security
+      summary: Get a JWT token used for Auth
+      parameters:
+        - name: privilege
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: JWT Auth Token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        401:
+          description: Token is expired
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /services/{serviceId}/events:
+    get:
+      tags:
+        - Services
+      summary: Return events by service
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            maxLength: 36
+            minLength: 36
+            type: string
+        - name: start
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: group_by_contact
+          in: query
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                total: 454
+                currentPage: 1
+                perPage: 50
+                lastPage: 10
+                items:
+                  - id: 5b46b798-4b52-4bc7-aef9-2773476c5f3a
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:05:03+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: f46aeebb-f19c-486f-bfd1-704f4a8cb348
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:06:20+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 1f9c6447-684c-46c0-a277-5a72ad4c5f8b
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:09:29+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 7bc72425-b58e-4536-8f6b-53d84e7f1bc1
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:16:36+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 85373292-b18c-48ac-8f74-025ca12c6316
+                    type: note
+                    body: We need help here! tiger
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:24:09+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: df3f374c-51ed-4456-80d5-fb71727b4cef
+                    type: workflow_started
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:08:42+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 81557a55-5b96-40c4-977c-90c9935224e4
+                    type: note
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:08:43+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 747fe98d-441d-4a1c-b4d2-9d2de5115fac
+                    type: workflow_ended
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:32+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 9a5c4fc0-caa7-49f6-bec6-8a05f7d32f5f
+                    type: mark_confirmed
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:37+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: e00c3b9a-d756-4636-b428-cc498dd8bfc3
+                    type: workflow_started
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:47+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 17e93112-c264-421f-8df9-f0f0b32a4897
+                    type: note
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:48+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: a687c882-65c5-4272-bdd7-1dff5fcbc672
+                    type: workflow_ended
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:17+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 889ce18b-57a2-40db-8eea-9aff90470569
+                    type: workflow_started
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:31+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 71982dc8-9c20-41f4-a66e-0333fe9e39fe
+                    type: note
+                    body: hello John Doe
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:34+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                _links:
+                  self: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1
+                  next: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2
+      security:
+        - jwt: []
+  /organizations/{organizationId}/events:
+    get:
+      tags:
+        - Organizations
+      summary: Return events that belong to services in organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: start
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: end
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: group_by_contact
+          in: query
+          schema:
+            type: boolean
+        - name: Organization ID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                total: 454
+                currentPage: 1
+                perPage: 50
+                lastPage: 10
+                items:
+                  - id: 5b46b798-4b52-4bc7-aef9-2773476c5f3a
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:05:03+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: f46aeebb-f19c-486f-bfd1-704f4a8cb348
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:06:20+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 1f9c6447-684c-46c0-a277-5a72ad4c5f8b
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:09:29+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 7bc72425-b58e-4536-8f6b-53d84e7f1bc1
+                    type: note
+                    body: 'We need help here! '
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:16:36+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: 85373292-b18c-48ac-8f74-025ca12c6316
+                    type: note
+                    body: We need help here! tiger
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T15:24:09+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: df3f374c-51ed-4456-80d5-fb71727b4cef
+                    type: workflow_started
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:08:42+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 81557a55-5b96-40c4-977c-90c9935224e4
+                    type: note
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:08:43+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 747fe98d-441d-4a1c-b4d2-9d2de5115fac
+                    type: workflow_ended
+                    contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:32+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 9a5c4fc0-caa7-49f6-bec6-8a05f7d32f5f
+                    type: mark_confirmed
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:37+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow: {}
+                  - id: e00c3b9a-d756-4636-b428-cc498dd8bfc3
+                    type: workflow_started
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:47+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 17e93112-c264-421f-8df9-f0f0b32a4897
+                    type: note
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:09:48+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: a687c882-65c5-4272-bdd7-1dff5fcbc672
+                    type: workflow_ended
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:17+0000
+                    user:
+                      id: 1
+                      uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
+                      firstName: John
+                      lastName: Doe
+                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      email: user@zingle.me
+                      emailValidated: true
+                      username: user@zingle.me
+                      teams:
+                        - 4960afc0-e20a-4a85-b700-4c528f9e702e
+                      privileges: []
+                      createdAt: 2020-07-31T12:30:35+0000
+                      updatedAt: 2020-10-09T13:10:17+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 889ce18b-57a2-40db-8eea-9aff90470569
+                    type: workflow_started
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:31+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                  - id: 71982dc8-9c20-41f4-a66e-0333fe9e39fe
+                    type: note
+                    body: hello John Doe
+                    contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
+                    serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
+                    createdAt: 2020-09-01T21:21:34+0000
+                    workflow:
+                      name: notes
+                      id: 3
+                _links:
+                  self: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1
+                  next: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2
+      security:
+        - jwt: []
+  /organizations/{organizationId}/contact-import-configurations/{integration}:
+    put:
+      tags:
+        - Organization Contact Imports
+      summary: Add mapping configuration for organization integration
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                beginAtRow:
+                  type: integer
+                mapping:
+                  type: object
+                  properties: {}
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - bearer: []
+      x-codegen-request-body-name: body
+    post:
+      tags:
+        - Organization Contact Imports
+      summary: Enable integration mapping on organization.
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - Organization Contact Imports
+      summary: Disable integration mapping for organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - bearer: []
+  /organizations/{organizationId}/services/{serviceId}:
+    post:
+      tags:
+        - Organizations
+      summary: Add a service to an organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: ""
+          content: {}
+    delete:
+      tags:
+        - Organizations
+      summary: Remove service from organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /organizations:
+    get:
+      tags:
+        - Organizations
+      summary: Paginate organizations
+      parameters:
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: number
+            default: 1.0
+        - name: query
+          in: path
+          required: true
+          schema:
+            type: string
+            default: Org Name
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  currentPage:
+                    type: number
+                  lastPage:
+                    type: number
+                  perPage:
+                    type: number
+                  total:
+                    type: number
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        displayName:
+                          type: string
+                        users:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              email:
+                                type: string
+                                format: email
+                              organizationId:
+                                type: string
+                                format: uuid
+                              roleId:
+                                type: number
+                              username:
+                                type: string
+                              uuid:
+                                type: string
+                                format: uuid
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        type: string
+                        format: uri
+      security:
+        - basic: []
+    post:
+      tags:
+        - Organizations
+      summary: Create an organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - displayName
+              type: object
+              properties:
+                displayName:
+                  type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          headers:
+            Location:
+              description: URI of Org
+              schema:
+                pattern: https://api.zingle.me/v2/organizations/{organizationId}
+                type: string
+                default: https://api.zingle.me/v2/organizations/00000000-0000-0000-0000-000000000000
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /organizations/{organizationId}:
+    get:
+      tags:
+        - Organizations
+      summary: Retrieve organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  displayName:
+                    type: string
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        email:
+                          type: string
+                          format: email
+                        organizationId:
+                          type: string
+                          format: uuid
+                        roleId:
+                          type: number
+                        username:
+                          type: string
+                        uuid:
+                          type: string
+                          format: uuid
+    put:
+      tags:
+        - Organizations
+      summary: Update organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                displayName:
+                  type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Organizations
+      summary: Delete organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-private: true
+  /organizations/{organizationId}/users:
+    get:
+      tags:
+        - Organizations
+      summary: User organization search
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: Query term
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+        - Organizations
+      summary: Add user to organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                role:
+                  type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: No matching role
+          content: {}
+        406:
+          description: Matching user is unassignable
+          content: {}
+      x-codegen-request-body-name: body
+  /organizations/{organizationId}/users/{userId}:
+    put:
+      tags:
+        - Organizations
+      summary: Update user org role
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Organizations
+      summary: Remove user from organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        406:
+          description: Unable to remove given user from organization
+          content: {}
+  /organizations/{organizationId}/services:
+    get:
+      tags:
+        - Organizations
+      summary: Get list of services in organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /organizations/{organizationId}/bulk-import/{integration}:
+    post:
+      tags:
+        - Organization Contact Imports
+      summary: Bulk Import Contacts into Organization Services
+      description: Imports a delimited file (CSV, TSV, pipe-delimited) for an organization
+        using the organization's current import mapping configuration.
+      operationId: organization-contact-import
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integration
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: Base64-encoded file to import
+        required: false
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+      x-codegen-request-body-name: body
+  /token/refresh:
+    get:
+      tags:
+        - Security
+      summary: Refresh JWT Token
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        400:
+          description: ""
+          content: {}
+      security:
+        - jwt: []
+  /organizations/{organizationId}/contact-fields:
+    get:
+      tags:
+        - Contact Fields
+      summary: List Organization Contact Fields
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content: {}
+        404:
+          description: When organization missing or organization has no services.
+          content: {}
+      security:
+        - jwt: []
+  /services/{serviceId}/service_code:
+    post:
+      tags:
+        - Services
+      summary: Add/Update service code to service
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: service_code
+          in: header
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: ""
+          content: {}
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - Services
+      summary: Remove service code from a service
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        202:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+        404:
+          description: ""
+          content: {}
+      security:
+        - bearer: []
+components:
+  schemas:
+    template:
+      title: Template
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/template-input'
+        - $ref: '#/components/schemas/timestamps'
+    template-input:
+      title: Template Input
+      required:
+        - body
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+          example: Checkin Message
+        body:
+          maxLength: 1600
+          minLength: 1
+          type: string
+          example: Welcome to the Hotel California, we hope you enjoy your stay
+    contact-field-input:
+      title: Contact Field Input
+      required:
+        - name
+        - type
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        type:
+          type: string
+          enum:
+            - string
+            - date
+            - boolean
+            - time
+        options:
+          uniqueItems: true
+          type: array
+          description: If specified, contact field input will be displayed as a dropdown
+            in the Zingle interface.
+          items:
+            type: string
+    contact-field:
+      title: Contact Field
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/contact-field-input'
+        - $ref: '#/components/schemas/timestamps'
+    timestamps:
+      title: Timestamps
+      required:
+        - createdAt
+        - updatedAt
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    object-id:
+      title: ID
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+          type: string
+    tag-input:
+      title: Tag Input
+      required:
+        - name
+        - textColor
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 50
+          type: string
+          example: Foo
+        textColor:
+          maxLength: 7
+          minLength: 7
+          pattern: ^\#[A-F0-9]{6}$
+          type: string
+          description: Hex String
+        backgroundColor:
+          maxLength: 7
+          minLength: 7
+          pattern: ^\#[A-F0-9]{6}$
+          type: string
+    tag:
+      title: Tag
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/tag-input'
+        - $ref: '#/components/schemas/timestamps'
+    message-input:
+      title: Message Input
+      allOf:
+        - type: object
+          properties:
+            recipients:
+              maxItems: 50
+              minItems: 1
+              type: array
+              items:
+                $ref: '#/components/schemas/message-recipient'
+        - type: object
+          properties:
+            body:
+              type: string
+            attachments:
+              type: array
+              items:
+                $ref: '#/components/schemas/attachment'
+            deduplicationId:
+              type: string
+            delayMinutes:
+              type: number
+            templateId:
+              type: string
+            sourceLanguage:
+              type: string
+            destinationLanguage:
+              type: string
+    message-recipient:
+      title: Message Recipient
+      type: object
+    error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        fieldErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: string
+    validation-error:
+      title: Validation Error
+      type: object
+    user:
+      title: User
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/user-profile-input'
+        - $ref: '#/components/schemas/timestamps'
+    user-profile-input:
+      title: User Profile Input
+      required:
+        - firstName
+        - lastName
+      type: object
+      properties:
+        firstName:
+          maxLength: 50
+          type: string
+        lastName:
+          maxLength: 50
+          type: string
+        hotsosLogin:
+          maxLength: 200
+          type: string
+        title:
+          maxLength: 150
+          type: string
+        signature:
+          maxLength: 255
+          type: string
+        phone:
+          maxLength: 50
+          type: string
+        email:
+          maxLength: 255
+          type: string
+        username:
+          maxLength: 255
+          type: string
+        avatarUrl:
+          type: string
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/object-id'
+        privileges:
+          type: array
+          items:
+            type: string
+    segment-input:
+      title: Segment Input
+      required:
+        - backgroundColor
+        - conditions
+        - name
+        - textColor
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          type: string
+        backgroundColor:
+          type: string
+        textColor:
+          type: string
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/condition'
+    condition:
+      title: Condition
+      type: object
+      properties:
+        method:
+          type: string
+        source:
+          type: string
+        value:
+          type: string
+    segment:
+      title: Segment
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/segment-input'
+        - $ref: '#/components/schemas/timestamps'
+    attachment:
+      title: Attachment
+      required:
+        - content
+        - filename
+        - mimeType
+      type: object
+      properties:
+        content:
+          type: string
+          description: base64 string
+        mimeType:
+          pattern: ^[A-Za-z\d]+\/[A-Za-z\d]+$
+          type: string
+        filename:
+          pattern: ^.+\..+$
+          type: string
+    phone-recipient:
+      title: Phone Recipient
+      required:
+        - type
+        - value
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - phone
+            - wechat
+            - facebook
+            - line
+            - chat
+            - email
+        value:
+          type: string
+    condition-recipient:
+      title: Condition Recipient
+      required:
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - conditions
+        fuzzySearchTerm:
+          maxLength: 50
+          type: string
+    entity-recipient:
+      title: Entity Recipient
+      required:
+        - id
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - contact
+            - segment
+            - tag
+        id:
+          type: string
+          format: uuid
+    contact-input:
+      title: Contact Input
+      type: object
+      properties:
+        firstName:
+          maxLength: 255
+          type: string
+        lastName:
+          maxLength: 255
+          type: string
+        title:
+          maxLength: 20
+          type: string
+          example: Mr.
+        tags:
+          type: array
+          items:
+            maxLength: 100
+            type: string
+        channels:
+          type: array
+          items:
+            type: object
+            allOf:
+              - $ref: '#/definitions/channel-input'
+              - type: object
+                properties:
+                  isActive:
+                    type: boolean
+        externalId:
+          maxLength: 50
+          type: string
+          description: You may optionally specify a unique ID for the contact.  If
+            supplied, this may be used to query and update the contact.
+        conversationProperties:
+          type: object
+          properties:
+            isClosed:
+              type: boolean
+            isUnread:
+              type: boolean
+            assignedToUserId:
+              maxLength: 36
+              type: string
+              description: Contact may be assigned to a user or team, but not both.
+            assignedToTeamId:
+              maxLength: 36
+              type: string
+        notes:
+          maxLength: 1500
+          type: string
+        contactFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/contact-field-value-input'
+    contact:
+      title: Contact
+      type: object
+      properties:
+        ?
+          : type: string
+    channel-input:
+      title: Channel Input
+      required:
+        - type
+        - value
+      type: object
+      properties:
+        type:
+          type: string
+          example: phone_number
+          enum:
+            - phone_number
+            - wechat
+            - line
+            - facebook_messenger
+            - email_address
+        value:
+          maxLength: 255
+          type: string
+          example: +18585551212
+    contact-field-value-input:
+      title: Contact Field Value Input
+      type: object
+      properties:
+        contactFieldName:
+          maxLength: 255
+          type: string
+        value:
+          type: object
+          description: 'Field value. Must be one '
+    all-contacts-recipient:
+      title: All Contacts Recipient
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - allContacts
+    message-category-input:
+      title: Message Category Input
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 0
+          minLength: 0
+          type: string
+    message-category:
+      title: Message Category
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/message-category-input'
+        - $ref: '#/components/schemas/timestamps'
+    integration-input:
+      title: Integration Input
+      type: object
+      properties:
+        auth_token:
+          type: string
+    integration:
+      title: Integration
+      allOf:
+        - $ref: '#/components/schemas/integration-input'
+        - type: object
+          properties:
+            name:
+              type: string
+            code:
+              type: string
+            requires_auth_token:
+              type: string
+            auth_token:
+              type: string
+            status:
+              type: string
+            configuration:
+              type: array
+              items:
+                type: object
+                allOf:
+                  - $ref: '#/definitions/integration-configuration-input'
+                  - type: object
+                    properties:
+                      field_type:
+                        type: string
+                      name:
+                        type: string
+            allows_mapping_fields:
+              type: boolean
+    integration-configuration-input:
+      title: Integration Configuration Input
+      type: object
+      properties:
+        code:
+          type: string
+        value:
+          type: string
+    integration-configuration:
+      title: Integration Configuration
+      allOf:
+        - $ref: '#/components/schemas/integration-configuration-input'
+        - type: object
+          properties:
+            name:
+              type: string
+            field_type:
+              type: string
+    integration-field-mapping-input:
+      title: Integration Field Mapping Input
+      type: object
+      properties:
+        begin_at_row:
+          type: number
+        column_field_mapping:
+          type: object
+          properties: {}
+          description: Array of column headers (keys) mapped to Zingle contact fields
+            (values)
+    integration-field-mapping:
+      title: Integration Field Mapping
+      allOf:
+        - $ref: '#/components/schemas/integration-field-mapping-input'
+        - type: object
+          properties:
+            last_received_at:
+              type: string
+              format: date-time
+            sample_data:
+              type: object
+              properties:
+                headers:
+                  type: array
+                  items:
+                    type: string
+                rows:
+                  type: array
+                  items:
+                    type: object
+            status:
+              type: string
+              enum:
+                - awaiting_receipt
+                - awaiting_configuration
+    webhook-input:
+      title: Webhook Input
+      type: object
+      properties:
+        url:
+          maxLength: 500
+          type: string
+          format: uri
+        headers:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        events:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+    webhook:
+      title: Webhook
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/webhook-input'
+    service-collection-input:
+      title: Service Collection Input
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    contact-log:
+      title: Contact Log
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+            - success
+            - failure
+            - warning
+        action:
+          type: string
+          enum:
+            - created
+            - updated
+            - ignored
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        source:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        matchedOn:
+          type: string
+          enum:
+            - external_id
+            - phone
+            - email
+        errors:
+          type: array
+          items:
+            type: string
+    service-collection-field-input:
+      title: Service Collection Field Input
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    service-collection:
+      title: Service Collection
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/service-collection-input'
+        - type: object
+          properties:
+            fields:
+              type: array
+              items:
+                $ref: '#/components/schemas/service-collection'
+    service-collection-field:
+      title: Service Collection Field
+      allOf:
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/service-collection-field-input'
+        - type: object
+          properties:
+            values:
+              type: array
+              items:
+                type: string
+    service-collection-service-input:
+      title: Service Collection Service Input
+      type: object
+      properties:
+        field_values:
+          type: array
+          items:
+            $ref: '#/components/schemas/service-collection-field-value-input'
+    service-collection-service:
+      title: Service Collection Service
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        field_values:
+          type: object
+          allOf:
+            - $ref: '#/definitions/service-collection-service-input'
+            - type: object
+              properties:
+                field_name:
+                  type: string
+    service-collection-field-value-input:
+      title: Service Collection Field Value Input
+      required:
+        - field_id
+        - value
+      type: object
+      properties:
+        field_id:
+          type: string
+          format: uuid
+        value:
+          type: string
+    service-collection-field-value:
+      title: Service Collection Field Value
+      allOf:
+        - $ref: '#/components/schemas/service-collection-field-value-input'
+        - type: object
+          properties:
+            field_name:
+              type: string
+    simple-idp:
+      title: Simple IDP
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        domainCode:
+          type: string
+        metadataUri:
+          type: string
+        issuerUri:
+          type: string
+        signOnUri:
+          type: string
+        logoutUri:
+          type: string
+        certificate:
+          type: string
+        requireEmail:
+          type: boolean
+    phone-number-input:
+      title: Phone Number Input
+      required:
+        - country
+        - phoneNumber
+        - provider
+      type: object
+      properties:
+        country:
+          maxLength: 2
+          minLength: 2
+          type: string
+        phoneNumber:
+          type: string
+        provider:
+          type: string
+          enum:
+            - bandwidth
+            - twilio_phone_number
+    service-channel-input:
+      title: Service Channel Input
+      required:
+        - channel_type_code
+        - channel_value
+        - phone_number_carrier_code
+      type: object
+      properties:
+        channel_type_code:
+          type: string
+          enum:
+            - phone_number
+        channel_value:
+          type: string
+        phone_number_carrier_code:
+          type: string
+          enum:
+            - bandwidth
+            - twilio_phone_number
+    user-create-input:
+      title: User Create Input
+      required:
+        - uiRole
+        - username
+      type: object
+      properties:
+        username:
+          maxLength: 50
+          type: string
+        uiRole:
+          maxLength: 50
+          type: string
+          enum:
+            - dashboard_administrator
+            - dashboard_standard
+            - dashboard_standard_with_bulk_messaging
+            - dashboard_standard_with_contact_deletion
+            - dashboard_standard_with_analytics
+            - dashboard_standard_with_bulk_messaging_with_contact_deletion
+            - dashboard_standard_with_bulk_messaging_with_analytics
+            - dashboard_standard_with_bulk_messaging_with_contact_deletion_with_analytics
+            - dashboard_standard_with_contact_deletion_with_analytics
+            - dashboard_standard_with_user_management
+            - dashboard_standard_with_analytics_with_user_management
+            - dashboard_standard_with_bulk_messaging_with_user_management
+            - dashboard_standard_with_bulk_messaging_with_analytics_with_user_management
+            - dashboard_standard_with_bulk_messaging_with_contact_deletion_with_user_management
+            - dashboard_standard_with_bulk_messaging_with_contact_deletion_with_analytics_with_user_management
+            - dashboard_standard_with_contact_deletion_with_user_management
+            - dashboard_standard_with_contact_deletion_with_analytics_with_user_management
+        firstName:
+          maxLength: 200
+          type: string
+        lastName:
+          maxLength: 150
+          type: string
+        email:
+          maxLength: 255
+          type: string
+    create-foo:
+      title: Create Foo
+      type: object
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        birthday:
+          type: string
+    foo:
+      title: Foo
+      allOf:
+        - $ref: '#/components/schemas/create-foo'
+        - $ref: '#/components/schemas/object-id'
+        - $ref: '#/components/schemas/timestamps'
+  responses:
+    record-accepted:
+      description: ""
+      content:
+        application/json:
+          schema:
+            type: object
+    record-deleted:
+      description: ""
+      content:
+        application/json:
+          example: {}
+    record-saved:
+      description: ""
+      headers:
+        Location:
+          description: API URI of the resource that was saved
+          schema:
+            type: string
+      content:
+        application/json:
+          example: {}
+    request-validation-failed:
+      description: ""
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          example:
+            code: voluptate commodo irure consectetur culpa
+            description: 'dolore '
+    see-other:
+      description: ""
+      headers:
+        Location:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+  parameters:
+    serviceId:
+      name: serviceId
+      in: path
+      required: true
+      schema:
+        maxLength: 36
+        minLength: 36
+        type: string
+    templateId:
+      name: Template ID
+      in: path
+      required: true
+      schema:
+        maxLength: 36
+        minLength: 36
+        type: string
+    contactFieldId:
+      name: Contact Field ID
+      in: path
+      required: true
+      schema:
+        maxLength: 36
+        minLength: 36
+        type: string
+    tagId:
+      name: Tag ID
+      in: path
+      required: true
+      schema:
+        maxLength: 36
+        minLength: 36
+        type: string
+    userId:
+      name: User ID
+      in: path
+      required: true
+      schema:
+        type: string
+    segmentId:
+      name: Segment ID
+      in: path
+      required: true
+      schema:
+        type: string
+    externalContactId:
+      name: External Contact ID
+      in: path
+      required: true
+      schema:
+        type: string
+    contactId:
+      name: Contact ID
+      in: path
+      required: true
+      schema:
+        type: string
+    messageId:
+      name: Message ID
+      in: path
+      required: true
+      schema:
+        type: string
+    messageCategoryId:
+      name: Message Category ID
+      in: path
+      required: true
+      schema:
+        type: string
+    feedId:
+      name: feedId
+      in: path
+      description: Feed's UUID
+      required: true
+      schema:
+        maxLength: 36
+        minLength: 36
+        type: string
+    mentions:
+      name: mentions
+      in: query
+      description: Filter contacts only with read or unread mentions in feeds
+      schema:
+        type: string
+        enum:
+          - read
+          - unread
+    organizationId:
+      name: Organization ID
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basic:
+      type: http
+      description: HTTP Basic auth is available
+      scheme: basic
+    jwt:
+      type: apiKey
+      description: JWT is available
+      name: api_key
+      in: header
+    bearer:
+      type: apiKey
+      name: Token
+      in: header
