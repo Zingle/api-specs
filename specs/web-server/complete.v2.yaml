@@ -620,7 +620,7 @@ paths:
       tags:
         - Users
       summary: Get the current User
-      operationId: get-user
+      operationId: getMe
       responses:
         '200':
           description: ''
@@ -647,11 +647,12 @@ paths:
                 id: 3cc50f64-4c22-3d51-63a0-e572e98c31a5
                 createdAt: '1984-08-14T20:29:33.314Z'
                 updatedAt: '1975-06-18T17:39:34.524Z'
+      description: Get Current User Info
     put:
       tags:
         - Users
       summary: Update the current User
-      operationId: update-user
+      operationId: updateMe
       requestBody:
         content:
           application/json:
@@ -675,6 +676,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
+      description: Update Current User
   '/services/{serviceId}/segments':
     get:
       tags:
@@ -3304,6 +3306,8 @@ paths:
                         type: string
       security:
         - jwt: []
+      operationId: ''
+      description: ''
     post:
       tags:
         - Users
@@ -3330,6 +3334,8 @@ paths:
                 type: object
       security:
         - jwt: []
+      description: ''
+      operationId: ''
   '/services/{serviceId}/hotsos/test-reservations':
     post:
       tags:
