@@ -1,9 +1,12 @@
 openapi: 3.0.1
 info:
   title: Zingle API (Current)
-  version: "2.0"
+  version: '2.0'
+  contact:
+    name: Development
+    url: zingle.me
 servers:
-  - url: https://api.zingle.me/v2
+  - url: 'https://api.zingle.me/v2'
 security:
   - basic: []
 tags:
@@ -32,7 +35,7 @@ tags:
   - name: Users
   - name: Webhooks
 paths:
-  /services/{serviceId}/templates:
+  '/services/{serviceId}/templates':
     get:
       tags:
         - Templates
@@ -47,8 +50,8 @@ paths:
             minLength: 36
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -59,19 +62,18 @@ paths:
                 - name: Welcome message
                   body: Welcome to the Hotel California!
                   id: 73a6f8ea-21a1-09f0-bb53-fc71f8a305f7
-                  createdAt: 1998-09-16T03:31:59.791Z
-                  updatedAt: 1991-07-17T01:43:16.160Z
+                  createdAt: '1998-09-16T03:31:59.791Z'
+                  updatedAt: '1991-07-17T01:43:16.160Z'
                 - name: Checkout message
                   body: We are sorry to see you go!
                   id: a4564607-a0d2-3208-aff9-5dc535291a2c
-                  createdAt: 1972-09-01T00:28:56.859Z
-                  updatedAt: 1978-09-11T19:23:16.877Z
+                  createdAt: '1972-09-01T00:28:56.859Z'
+                  updatedAt: '1978-09-11T19:23:16.877Z'
                 - name: Follow-up
-                  body: It looks like your requested item was delivered. Please let
-                    us know if you have any more questions.
+                  body: It looks like your requested item was delivered. Please let us know if you have any more questions.
                   id: 26f989cf-4a40-7369-12b8-1d38565ac170
-                  createdAt: 1967-03-23T01:15:19.276Z
-                  updatedAt: 1965-01-27T08:09:50.060Z
+                  createdAt: '1967-03-23T01:15:19.276Z'
+                  updatedAt: '1965-01-27T08:09:50.060Z'
     post:
       tags:
         - Templates
@@ -92,8 +94,8 @@ paths:
               $ref: '#/components/schemas/template-input'
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -103,7 +105,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/templates/{templateId}:
+  '/services/{serviceId}/templates/{templateId}':
     get:
       tags:
         - Templates
@@ -125,8 +127,8 @@ paths:
             maxLength: 36
             minLength: 36
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -135,8 +137,8 @@ paths:
                 name: Welcome message
                 body: Welcome to the Hotel California!
                 id: f1e2cfd1-51e3-01b6-3b7a-2f1cdfad3261
-                createdAt: 2014-02-09T23:20:18.906Z
-                updatedAt: 2012-05-07T10:42:07.598Z
+                createdAt: '2014-02-09T23:20:18.906Z'
+                updatedAt: '2012-05-07T10:42:07.598Z'
     put:
       tags:
         - Templates
@@ -164,8 +166,8 @@ paths:
               $ref: '#/components/schemas/template-input'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -196,12 +198,12 @@ paths:
             maxLength: 36
             minLength: 36
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               example: {}
-  /services/{serviceId}/contact-fields:
+  '/services/{serviceId}/contact-fields':
     get:
       tags:
         - Contact Fields
@@ -216,8 +218,8 @@ paths:
             minLength: 36
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -234,13 +236,13 @@ paths:
                     - laborum dolor ullamco exercitation
                     - pariatur in
                     - non aliquip Duis cupidatat
-                  createdAt: 1955-11-02T17:06:28.424Z
-                  updatedAt: 1960-01-05T06:32:46.094Z
+                  createdAt: '1955-11-02T17:06:28.424Z'
+                  updatedAt: '1960-01-05T06:32:46.094Z'
                 - name: Lo
                   type: boolean
                   id: e89f4b5c-0a77-e924-cc6f-8c4685597918
-                  createdAt: 1950-04-05T09:52:16.360Z
-                  updatedAt: 2018-01-14T19:19:18.947Z
+                  createdAt: '1950-04-05T09:52:16.360Z'
+                  updatedAt: '2018-01-14T19:19:18.947Z'
     post:
       tags:
         - Contact Fields
@@ -261,8 +263,8 @@ paths:
               $ref: '#/components/schemas/contact-field-input'
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -271,8 +273,8 @@ paths:
           content:
             application/json:
               example: {}
-        400:
-          description: ""
+        '400':
+          description: ''
           content:
             application/json:
               schema:
@@ -280,8 +282,8 @@ paths:
               example:
                 code: voluptate commodo irure consectetur culpa
                 description: 'dolore '
-        403:
-          description: ""
+        '403':
+          description: ''
           content:
             application/json:
               schema:
@@ -290,7 +292,7 @@ paths:
                 code: voluptate commodo irure consectetur culpa
                 description: 'dolore '
       x-codegen-request-body-name: body
-  /services/{serviceId}/contact-fields/{contactFieldId}:
+  '/services/{serviceId}/contact-fields/{contactFieldId}':
     get:
       tags:
         - Contact Fields
@@ -312,8 +314,8 @@ paths:
             maxLength: 36
             minLength: 36
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -322,8 +324,8 @@ paths:
                 name: Favorite flower
                 type: string
                 id: 9793cf65-c072-11fc-a19b-6bb07930bb0b
-                createdAt: 2004-08-28T03:32:07.596Z
-                updatedAt: 2014-03-05T19:36:26.433Z
+                createdAt: '2004-08-28T03:32:07.596Z'
+                updatedAt: '2014-03-05T19:36:26.433Z'
     put:
       tags:
         - Contact Fields
@@ -351,8 +353,8 @@ paths:
               $ref: '#/components/schemas/contact-field-input'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -361,8 +363,8 @@ paths:
           content:
             application/json:
               example: {}
-        400:
-          description: ""
+        '400':
+          description: ''
           content:
             application/json:
               schema:
@@ -370,8 +372,8 @@ paths:
               example:
                 code: voluptate commodo irure consectetur culpa
                 description: 'dolore '
-        403:
-          description: ""
+        '403':
+          description: ''
           content:
             application/json:
               schema:
@@ -401,12 +403,12 @@ paths:
             maxLength: 36
             minLength: 36
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               example: {}
-  /services/{serviceId}/tags:
+  '/services/{serviceId}/tags':
     get:
       tags:
         - Tags
@@ -421,8 +423,8 @@ paths:
             minLength: 36
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -433,15 +435,15 @@ paths:
                 - name: exanim vel
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: "41111111-1111-1111-1111-111111111111"
-                  createdAt: 1968-07-27T19:51:00.026Z
-                  updatedAt: 1985-08-29T15:01:12.503Z
+                  id: 41111111-1111-1111-1111-111111111111
+                  createdAt: '1968-07-27T19:51:00.026Z'
+                  updatedAt: '1985-08-29T15:01:12.503Z'
                 - name: et nostrud
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: '41111111-1111-1111-1111-111111111111'
-                  createdAt: 1942-02-13T11:49:56.528Z
-                  updatedAt: 1942-11-16T16:21:02.881Z
+                  id: 41111111-1111-1111-1111-111111111111
+                  createdAt: '1942-02-13T11:49:56.528Z'
+                  updatedAt: '1942-11-16T16:21:02.881Z'
     post:
       tags:
         - Tags
@@ -462,8 +464,8 @@ paths:
               $ref: '#/components/schemas/tag-input'
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -473,7 +475,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/tags/{tagId}:
+  '/services/{serviceId}/tags/{tagId}':
     get:
       tags:
         - Tags
@@ -495,8 +497,8 @@ paths:
             minLength: 36
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -507,15 +509,15 @@ paths:
                 - name: 'cupidatat '
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: esse aliqu
-                  createdAt: 1975-12-08T06:06:36.971Z
-                  updatedAt: 1973-11-20T17:27:46.011Z
+                  id: 41111111-1111-1111-1111-111111111111
+                  createdAt: '1975-12-08T06:06:36.971Z'
+                  updatedAt: '1973-11-20T17:27:46.011Z'
                 - name: 'dosunt Ut '
                   textColor: '#AFD6B8'
                   backgroundColor: '#AFD6B8'
-                  id: et Duis ut
-                  createdAt: 2002-12-30T18:35:40.010Z
-                  updatedAt: 1983-10-05T11:09:11.602Z
+                  id: 41111111-1111-1111-1111-111111111111
+                  createdAt: '2002-12-30T18:35:40.010Z'
+                  updatedAt: '1983-10-05T11:09:11.602Z'
     put:
       tags:
         - Tags
@@ -543,8 +545,8 @@ paths:
               $ref: '#/components/schemas/tag-input'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -575,12 +577,12 @@ paths:
             minLength: 36
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               example: {}
-  /services/{serviceId}/messages:
+  '/services/{serviceId}/messages':
     post:
       tags:
         - Messages
@@ -601,8 +603,8 @@ paths:
               $ref: '#/components/schemas/message-input'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -615,8 +617,8 @@ paths:
       summary: Get the current User
       operationId: get-user
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -638,8 +640,8 @@ paths:
                 email: esmythe@zingleme.com
                 username: esmythe@zingleme.com
                 id: 3cc50f64-4c22-3d51-63a0-e572e98c31a5
-                createdAt: 1984-08-14T20:29:33.314Z
-                updatedAt: 1975-06-18T17:39:34.524Z
+                createdAt: '1984-08-14T20:29:33.314Z'
+                updatedAt: '1975-06-18T17:39:34.524Z'
     put:
       tags:
         - Users
@@ -657,8 +659,8 @@ paths:
                       $ref: '#/components/schemas/attachment'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -668,7 +670,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/segments:
+  '/services/{serviceId}/segments':
     get:
       tags:
         - Segments
@@ -680,8 +682,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -709,8 +711,8 @@ paths:
                   id: 3ad0a1bb-f54c-235e-49a0-efd36c177a0b
                   backgroundColor: dolor magna
                   textColor: in occaecat Lorem tempor anim
-                  createdAt: 2018-01-17T13:22:22.898Z
-                  updatedAt: 1984-03-15T02:01:20.855Z
+                  createdAt: '2018-01-17T13:22:22.898Z'
+                  updatedAt: '1984-03-15T02:01:20.855Z'
                 - name: Lorem
                   conditions:
                     - method: culpa
@@ -728,8 +730,8 @@ paths:
                   id: 0fcc2a5d-1f9b-9689-e8f3-81a95aa237e6
                   backgroundColor: deserunt
                   textColor: esse occaecat Ut velit
-                  createdAt: 1953-06-02T21:21:31.790Z
-                  updatedAt: 1951-10-16T05:20:35.340Z
+                  createdAt: '1953-06-02T21:21:31.790Z'
+                  updatedAt: '1951-10-16T05:20:35.340Z'
                 - name: repreh
                   conditions:
                     - method: quis culpa labore eu
@@ -750,8 +752,8 @@ paths:
                   id: 5aa727ea-bcfe-5ad4-9425-a344788eb97c
                   backgroundColor: adipisicing Lorem es
                   textColor: pariatur sed amet in
-                  createdAt: 2009-04-16T06:25:35.712Z
-                  updatedAt: 1987-09-18T15:31:29.347Z
+                  createdAt: '2009-04-16T06:25:35.712Z'
+                  updatedAt: '1987-09-18T15:31:29.347Z'
     post:
       tags:
         - Segments
@@ -769,8 +771,8 @@ paths:
               $ref: '#/components/schemas/segment-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -780,7 +782,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/segments/{segmentId}:
+  '/services/{serviceId}/segments/{segmentId}':
     get:
       tags:
         - Segments
@@ -798,8 +800,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -822,8 +824,8 @@ paths:
                 id: 7b0719ab-b942-6c7d-6607-409461bb59b6
                 backgroundColor: commodo et ipsum dolore
                 textColor: consequat deserunt
-                createdAt: 1984-08-15T07:54:21.811Z
-                updatedAt: 2012-03-04T08:03:02.733Z
+                createdAt: '1984-08-15T07:54:21.811Z'
+                updatedAt: '2012-03-04T08:03:02.733Z'
     put:
       tags:
         - Segments
@@ -846,8 +848,8 @@ paths:
               $ref: '#/components/schemas/segment-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -871,13 +873,13 @@ paths:
           schema:
             type: string
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/contacts/ref/{externalContactId}:
+  '/services/{serviceId}/contacts/ref/{externalContactId}':
     get:
       tags:
         - Contacts
@@ -895,8 +897,8 @@ paths:
           schema:
             type: string
       responses:
-        307:
-          description: ""
+        '307':
+          description: ''
           headers:
             Location:
               schema:
@@ -922,8 +924,8 @@ paths:
           schema:
             type: string
       responses:
-        307:
-          description: ""
+        '307':
+          description: ''
           headers:
             Location:
               schema:
@@ -949,8 +951,8 @@ paths:
           schema:
             type: string
       responses:
-        307:
-          description: ""
+        '307':
+          description: ''
           headers:
             Location:
               schema:
@@ -959,7 +961,7 @@ paths:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/contacts/{contactId}:
+  '/services/{serviceId}/contacts/{contactId}':
     get:
       tags:
         - Contacts
@@ -977,8 +979,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1001,7 +1003,7 @@ paths:
                   - VIP
                 channels:
                   - type: phone_number
-                    value: +14065559898
+                    value: 14065559898
                     isActive: true
                 externalId: a09sd80a9sd809a8sd098asd
                 conversationProperties:
@@ -1010,7 +1012,7 @@ paths:
                 notes: This is a very nice person
                 contactFields:
                   - contactFieldName: Checkin Date
-                    value: 2018-08-30
+                    value: '2018-08-30'
                   - contactFieldName: Room Number
                     value: 200
     put:
@@ -1038,8 +1040,8 @@ paths:
                       $ref: '#/components/schemas/attachment'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1059,13 +1061,13 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/contacts:
+  '/services/{serviceId}/contacts':
     get:
       tags:
         - Contacts
@@ -1087,19 +1089,18 @@ paths:
               - unread
           required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: object
                   allOf:
-                    - type: object
-                      properties:
+                    - properties:
                         avatarUrl:
                           type: string
+                  type: object
               example:
                 - firstName: Cindy
                   lastName: Smith
@@ -1109,7 +1110,7 @@ paths:
                     - VIP
                   channels:
                     - type: phone_number
-                      value: +14065559898
+                      value: 14065559898
                       isActive: true
                   externalId: a09sd80a9sd809a8sd098asd
                   conversationProperties:
@@ -1118,7 +1119,7 @@ paths:
                   notes: This is a very nice person
                   contactFields:
                     - contactFieldName: Checkin Date
-                      value: 2018-09-03
+                      value: '2018-09-03'
                     - contactFieldName: Room Number
                       value: 220
                 - firstName: Bob
@@ -1128,7 +1129,7 @@ paths:
                     - VIP
                   channels:
                     - type: phone_number
-                      value: +18585551212
+                      value: 18585551212
                       isActive: true
                   conversationProperties:
                     isClosed: true
@@ -1159,15 +1160,15 @@ paths:
           application/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/contact-input'
                 - type: object
                   properties:
                     avatar:
                       $ref: '#/components/schemas/attachment'
+                - $ref: '#/components/schemas/contact-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -1177,7 +1178,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/messages/{messageId}/categories/{messageCategoryId}:
+  '/services/{serviceId}/messages/{messageId}/categories/{messageCategoryId}':
     post:
       tags:
         - Messages
@@ -1200,8 +1201,8 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -1228,13 +1229,13 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/message-categories:
+  '/services/{serviceId}/message-categories':
     get:
       tags:
         - Message Categories
@@ -1247,8 +1248,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
     post:
       tags:
         - Message Categories
@@ -1267,8 +1268,8 @@ paths:
               $ref: '#/components/schemas/message-category-input'
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -1278,7 +1279,7 @@ paths:
             application/json:
               example: {}
       x-codegen-request-body-name: body
-  /services/{serviceId}/message-categories/{messageCategoryId}:
+  '/services/{serviceId}/message-categories/{messageCategoryId}':
     get:
       tags:
         - Message Categories
@@ -1296,8 +1297,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1305,8 +1306,8 @@ paths:
               example:
                 id: 6075706b-46ca-98d7-104f-e978d009d133
                 name: culpa
-                createdAt: 2014-04-02T19:56:46.008Z
-                updatedAt: 1964-02-07T14:01:54.035Z
+                createdAt: '2014-04-02T19:56:46.008Z'
+                updatedAt: '1964-02-07T14:01:54.035Z'
     put:
       tags:
         - Message Categories
@@ -1330,8 +1331,8 @@ paths:
               $ref: '#/components/schemas/message-category-input'
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -1358,12 +1359,12 @@ paths:
           schema:
             type: string
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               example: {}
-  /services/{serviceId}/messages/{messageId}/categories:
+  '/services/{serviceId}/messages/{messageId}/categories':
     put:
       tags:
         - Messages
@@ -1385,14 +1386,13 @@ paths:
           application/json:
             schema:
               type: array
-              description: 'Array of category names to set on the message.  All other
-                categories will be '
+              description: 'Array of category names to set on the message.  All other categories will be '
               items:
                 type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: API URI of the resource that was saved
@@ -1415,25 +1415,26 @@ paths:
               type: object
               properties:
                 collection_id:
-                  pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+                  pattern: '^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}'
                   type: string
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   service_group_id:
-                    pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+                    pattern: '^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}'
                     type: string
               example:
                 service_group_id: 5543a5d4-5d0a-e598-43df-5fb4953f588f
       x-private: true
       x-codegen-request-body-name: body
-  /services/{serviceId}/integrations:
+      description: ''
+  '/services/{serviceId}/integrations':
     get:
       tags:
         - Integrations
@@ -1446,8 +1447,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1490,7 +1491,7 @@ paths:
                   name: TripAdvisor
                   status: connected
       x-codegen-request-body-name: body
-  /services/{serviceId}/integrations/{integration}:
+  '/services/{serviceId}/integrations/{integration}':
     get:
       tags:
         - Integrations
@@ -1507,8 +1508,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1547,8 +1548,8 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -1580,8 +1581,8 @@ paths:
                   type: string
         required: false
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
@@ -1591,8 +1592,7 @@ paths:
       tags:
         - Integrations
       summary: Disable an integration
-      description: Disables an integration, deletes all integration config values,
-        removes an integration-related auth tokens
+      description: 'Disables an integration, deletes all integration config values, removes an integration-related auth tokens'
       operationId: disable-integration
       parameters:
         - name: serviceId
@@ -1606,14 +1606,14 @@ paths:
           schema:
             type: string
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
               example: {}
-  /services/{serviceId}/integrations/{integration}/field-mapping:
+  '/services/{serviceId}/integrations/{integration}/field-mapping':
     get:
       summary: Get the field mapping for an integration
       parameters:
@@ -1628,8 +1628,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1658,8 +1658,8 @@ paths:
               $ref: '#/components/schemas/integration-field-mapping-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1682,13 +1682,13 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/integrations/mindbody/activation-link:
+  '/services/{serviceId}/integrations/mindbody/activation-link':
     get:
       tags:
         - Integrations
@@ -1701,8 +1701,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1711,8 +1711,8 @@ paths:
                   link:
                     type: string
               example:
-                link: https://mindbodyonline.com/foo/bar
-  /services/{serviceId}/webhooks:
+                link: 'https://mindbodyonline.com/foo/bar'
+  '/services/{serviceId}/webhooks':
     get:
       tags:
         - Webhooks
@@ -1725,8 +1725,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1735,7 +1735,7 @@ paths:
                   $ref: '#/components/schemas/webhook'
               example:
                 - id: 2d338bc5-16a3-9eff-9b52-5f01cfdae265
-                  url: https://Hv
+                  url: 'https://Hv'
                   headers:
                     - key: eiusmod
                       value: in commodo ipsum esse
@@ -1747,7 +1747,7 @@ paths:
                     - id
                   enabled: true
                 - id: cfdbad62-52ff-89ba-6da1-48121dbebde6
-                  url: https://dl
+                  url: 'https://dl'
                   headers:
                     - key: Ut commodo veniam
                       value: occaecat eiusmod ut
@@ -1761,7 +1761,7 @@ paths:
                     - Excepteur ipsum culpa dolore
                   enabled: true
                 - id: d1359016-5b9f-3076-349b-5e520392019e
-                  url: http://gKh
+                  url: 'http://gKh'
                   headers:
                     - key: veniam et
                       value: adi
@@ -1787,8 +1787,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1796,7 +1796,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/webhook-input'
               example:
-                - url: https://ZJ
+                - url: 'https://ZJ'
                   headers:
                     - key: reprehenderit officia sunt enim
                       value: do dolor ut ipsum
@@ -1811,7 +1811,7 @@ paths:
                     - culpa cupidatat anim id
                     - dolor
                   enabled: true
-                - url: https://vF
+                - url: 'https://vF'
                   headers:
                     - key: minim dolore dolore adipisicing
                       value: anim veniam nulla proident
@@ -1824,7 +1824,7 @@ paths:
                   events:
                     - sint commodo ut elit Excepteur
                   enabled: false
-                - url: https://DG
+                - url: 'https://DG'
                   headers:
                     - key: elit
                       value: aute dolore culpa en
@@ -1842,7 +1842,7 @@ paths:
                     - in in laborum aute
                     - cillum cupidatat
                   enabled: true
-                - url: https://iD
+                - url: 'https://iD'
                   headers:
                     - key: Excepteur
                       value: voluptate cupidatat ipsum
@@ -1855,7 +1855,7 @@ paths:
                   events:
                     - dolor irure aute sed
                   enabled: false
-                - url: http://nwl
+                - url: 'http://nwl'
                   headers:
                     - key: Lorem eu in
                       value: exercitation aliquip cillum dolor est
@@ -1883,14 +1883,14 @@ paths:
               $ref: '#/components/schemas/webhook-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/webhooks/{webhookId}:
+  '/services/{serviceId}/webhooks/{webhookId}':
     get:
       tags:
         - Webhooks
@@ -1908,15 +1908,15 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/webhook'
               example:
                 id: e13a4a69-df8b-a2bb-c59a-c16244b35560
-                url: http://AFG
+                url: 'http://AFG'
                 headers:
                   - key: id aliqua cillum dolor
                     value: ullamco consequat est
@@ -1946,8 +1946,8 @@ paths:
               $ref: '#/components/schemas/webhook-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -1975,8 +1975,8 @@ paths:
               $ref: '#/components/schemas/webhook-input'
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           content:
             application/json:
               schema:
@@ -1999,8 +1999,8 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -2010,8 +2010,7 @@ paths:
       tags:
         - Service Collections
       summary: List Service Collections for user
-      description: Lists all service collections that a current user has access to
-        through their Service roles
+      description: Lists all service collections that a current user has access to through their Service roles
       operationId: list-user-service-collections
       parameters:
         - name: service_id
@@ -2020,8 +2019,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2049,8 +2048,8 @@ paths:
               $ref: '#/components/schemas/service-collection-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           headers:
             Location:
               description: URL to access the service collection
@@ -2070,8 +2069,8 @@ paths:
       description: List all service collections
       operationId: list-service-collections
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2088,7 +2087,7 @@ paths:
                         - East
                         - West
       x-private: true
-  /service-collections/{serviceCollectionId}/services:
+  '/service-collections/{serviceCollectionId}/services':
     get:
       tags:
         - Service Collections
@@ -2101,8 +2100,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2110,15 +2109,15 @@ paths:
                 items:
                   $ref: '#/components/schemas/service-collection-service'
               example:
-                - id: urn:uuid:b1fb5287-a18f-e912-d902-2f29d8d43784
+                - id: 'urn:uuid:b1fb5287-a18f-e912-d902-2f29d8d43784'
                   name: commodo cillum
                   field_values:
                     field_values:
                       - field_id: 35e18d4b-a706-fcd7-62f3-17f38e0ce301
                         value: sit
-                      - field_id: urn:uuid:5bc8bf7d-8020-0725-e206-baf3120b8af2
+                      - field_id: 'urn:uuid:5bc8bf7d-8020-0725-e206-baf3120b8af2'
                         value: dolore laborum aliquip exercitation eiusmod
-                      - field_id: urn:uuid:6e342ad0-ccc4-cb51-6b24-a81547a08e1c
+                      - field_id: 'urn:uuid:6e342ad0-ccc4-cb51-6b24-a81547a08e1c'
                         value: deserunt non cillum laborum
                     field_name: incididunt in cupidatat
                 - id: f5505cb6-23fe-6929-2422-a5b4766280f1
@@ -2130,7 +2129,7 @@ paths:
                       - field_id: 6505d400-9964-53eb-13bc-a0d73fbbf4db
                         value: sunt et magna
                     field_name: consectetur sit proident
-  /service-collections/{serviceCollectionId}/services/{serviceId}:
+  '/service-collections/{serviceCollectionId}/services/{serviceId}':
     put:
       tags:
         - Service Collections
@@ -2154,8 +2153,8 @@ paths:
               $ref: '#/components/schemas/service-collection-service-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2185,17 +2184,17 @@ paths:
               $ref: '#/components/schemas/service-collection-service-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/service-collection-service-input'
               example:
                 field_values:
-                  - field_id: urn:uuid:fa73dc0e-63b1-fa3f-2031-4bede189e0d8
+                  - field_id: 'urn:uuid:fa73dc0e-63b1-fa3f-2031-4bede189e0d8'
                     value: amet nostru
-                  - field_id: urn:uuid:703b30df-d5d2-cb05-c3db-d09dcfdc8571
+                  - field_id: 'urn:uuid:703b30df-d5d2-cb05-c3db-d09dcfdc8571'
                     value: eu in ad dolor
       x-private: true
       x-codegen-request-body-name: body
@@ -2216,14 +2215,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /service-collections/{serviceCollectionId}/fields:
+  '/service-collections/{serviceCollectionId}/fields':
     post:
       tags:
         - Service Collections
@@ -2242,15 +2241,15 @@ paths:
               $ref: '#/components/schemas/service-collection-field-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
       x-codegen-request-body-name: body
-  /service-collections/{serviceCollectionId}/fields/{fieldId}:
+  '/service-collections/{serviceCollectionId}/fields/{fieldId}':
     get:
       tags:
         - Service Collections
@@ -2268,8 +2267,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2293,14 +2292,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /service-collections/{serviceCollectionId}:
+  '/service-collections/{serviceCollectionId}':
     put:
       tags:
         - Service Collections
@@ -2319,8 +2318,8 @@ paths:
               $ref: '#/components/schemas/service-collection-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2339,14 +2338,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /services/{serviceId}/analytics/sign-url:
+  '/services/{serviceId}/analytics/sign-url':
     get:
       tags:
         - Analytics
@@ -2371,14 +2370,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /services/{serviceId}/analytics/report-list:
+  '/services/{serviceId}/analytics/report-list':
     get:
       tags:
         - Analytics
@@ -2391,14 +2390,14 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /services/{serviceId}/messages/{messageId}:
+  '/services/{serviceId}/messages/{messageId}':
     delete:
       tags:
         - Messages
@@ -2415,13 +2414,13 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /services/{serviceId}/contact-log:
+  '/services/{serviceId}/contact-log':
     get:
       tags:
         - Contact Import Log
@@ -2433,13 +2432,13 @@ paths:
           required: true
           schema:
             type: string
-        - name: range[start]
+        - name: 'range[start]'
           in: query
           required: true
           schema:
             type: string
             format: date-time
-        - name: range[end]
+        - name: 'range[end]'
           in: query
           required: true
           schema:
@@ -2450,8 +2449,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2465,7 +2464,7 @@ paths:
                   phone: ipsum elit
                   email: amet
                   source: in cillum aute velit
-                  receivedAt: 1952-12-12T02:42:43.540Z
+                  receivedAt: '1952-12-12T02:42:43.540Z'
                   matchedOn: phone
                   errors:
                     - ea anim dolor exercitation dolor
@@ -2481,8 +2480,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2506,7 +2505,7 @@ paths:
                     type: string
                   requireEmail:
                     type: boolean
-  /services/{serviceId}/calendar/events:
+  '/services/{serviceId}/calendar/events':
     get:
       tags:
         - Calendar Events
@@ -2518,8 +2517,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2618,8 +2617,8 @@ paths:
                   type: boolean
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -2670,8 +2669,8 @@ paths:
                   type: boolean
         required: false
       responses:
-        201:
-          description: ""
+        '201':
+          description: ''
           content:
             application/json:
               schema:
@@ -2683,8 +2682,8 @@ paths:
         - Calendar Events
       summary: List of all available templates
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2698,7 +2697,7 @@ paths:
                       type: string
                     description:
                       type: string
-  /services/{serviceId}/calendar/templates/type:
+  '/services/{serviceId}/calendar/templates/type':
     post:
       tags:
         - Calendar Events
@@ -2719,8 +2718,8 @@ paths:
                   type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               schema:
@@ -2730,7 +2729,7 @@ paths:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/csv-import/upload:
+  '/services/{serviceId}/csv-import/upload':
     post:
       tags:
         - CSV Import
@@ -2750,8 +2749,8 @@ paths:
                   type: string
                   format: binary
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2765,7 +2764,7 @@ paths:
                     type: array
                     items:
                       type: object
-  /services/{serviceId}/csv-import/process:
+  '/services/{serviceId}/csv-import/process':
     post:
       tags:
         - CSV Import
@@ -2790,14 +2789,14 @@ paths:
                     type: object
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/usage:
+  '/services/{serviceId}/usage':
     get:
       tags:
         - Billing
@@ -2809,8 +2808,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2820,7 +2819,7 @@ paths:
                     type: integer
                   purchased:
                     type: integer
-  /services/{serviceId}/calendar/events/bulk-upsert:
+  '/services/{serviceId}/calendar/events/bulk-upsert':
     post:
       tags:
         - Calendar Events
@@ -2878,27 +2877,25 @@ paths:
                         type: boolean
         required: false
       responses:
-        204:
+        '204':
           description: Successfully upserted all events
           content:
             application/json:
               schema:
                 type: object
-        400:
-          description: Invalid request parameters, for example a required field is
-            missing or in update the type missmatch the event type.
+        '400':
+          description: 'Invalid request parameters, for example a required field is missing or in update the type missmatch the event type.'
           content: {}
-        404:
-          description: If at least one event to update doesn’t exist, the whole upsert
-            operation will be aborted and a 404 returned.
+        '404':
+          description: 'If at least one event to update doesn’t exist, the whole upsert operation will be aborted and a 404 returned.'
           content: {}
-        500:
+        '500':
           description: Internal error
           content: {}
       security:
         - basic: []
       x-codegen-request-body-name: body
-  /services/{serviceId}/calendar/events/bulk-delete:
+  '/services/{serviceId}/calendar/events/bulk-delete':
     delete:
       tags:
         - Calendar Events
@@ -2914,23 +2911,22 @@ paths:
           schema:
             type: string
       responses:
-        204:
+        '204':
           description: Successfully deleted all events.
           content:
             application/json:
               schema:
                 type: object
-        404:
-          description: If at least one event to delete doesn't exist, the whole delete
-            operation will be reverted and a 404 returned.
+        '404':
+          description: 'If at least one event to delete doesn''t exist, the whole delete operation will be reverted and a 404 returned.'
           content: {}
-        500:
+        '500':
           description: Internal server error
           content: {}
       security:
         - basic: []
       x-codegen-request-body-name: body
-  /services/{serviceId}/users:
+  '/services/{serviceId}/users':
     get:
       tags:
         - Users
@@ -2943,8 +2939,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -2954,22 +2950,22 @@ paths:
               example:
                 - id: 34439a01-1118-8e94-daa1-9c2dda874d8e
                   firstName: Duis
-                  lastName: n
-                  createdAt: 2005-07-16T21:59:16.306Z
-                  updatedAt: 2012-02-20T08:42:29.242Z
+                  lastName: 'n'
+                  createdAt: '2005-07-16T21:59:16.306Z'
+                  updatedAt: '2012-02-20T08:42:29.242Z'
                   hotsosLogin: si
-                  title: ""
+                  title: ''
                   signature: pariatur c
                   phone: 'ullamco '
-                  email: off
+                  email: 'off'
                   username: cupidata
                 - id: f053a006-1cd6-6d0c-d299-0b47efa1608c
                   firstName: 'sit ea in '
                   lastName: v
-                  createdAt: 1961-09-24T15:42:04.121Z
-                  updatedAt: 1968-07-21T10:20:47.026Z
+                  createdAt: '1961-09-24T15:42:04.121Z'
+                  updatedAt: '1968-07-21T10:20:47.026Z'
                   hotsosLogin: 'et aliqua '
-                  title: ""
+                  title: ''
                   signature: incidid
                   phone: dolo
                   email: ex
@@ -2977,8 +2973,8 @@ paths:
                 - id: fbdd60da-d024-fbcf-ffb2-2ed166b94287
                   firstName: dolor
                   lastName: e
-                  createdAt: 1967-11-25T09:34:37.790Z
-                  updatedAt: 1958-01-15T10:41:31.735Z
+                  createdAt: '1967-11-25T09:34:37.790Z'
+                  updatedAt: '1958-01-15T10:41:31.735Z'
                   hotsosLogin: Ut Duis
                   title: ut u
                   signature: 'et dolore '
@@ -2988,8 +2984,8 @@ paths:
                 - id: 7b40ec1d-f511-7787-5c81-ea0d6af44488
                   firstName: culpa
                   lastName: ea
-                  createdAt: 1993-05-09T12:38:21.994Z
-                  updatedAt: 1951-06-12T19:32:52.888Z
+                  createdAt: '1993-05-09T12:38:21.994Z'
+                  updatedAt: '1951-06-12T19:32:52.888Z'
                   hotsosLogin: nisi adi
                   title: mol
                   signature: ut Ut anim
@@ -3012,14 +3008,14 @@ paths:
               $ref: '#/components/schemas/user-create-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/features/{featureCode}:
+  '/services/{serviceId}/features/{featureCode}':
     post:
       tags:
         - Services
@@ -3037,8 +3033,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3060,8 +3056,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3079,14 +3075,14 @@ paths:
               $ref: '#/components/schemas/phone-number-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/channels:
+  '/services/{serviceId}/channels':
     post:
       tags:
         - Services
@@ -3104,18 +3100,17 @@ paths:
               $ref: '#/components/schemas/service-channel-input'
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /services/{serviceId}/zings/{zingId}/start:
+  '/services/{serviceId}/zings/{zingId}/start':
     post:
       summary: Start a new workflow for the specified contact
-      description: Receive a contact id, external id or phone number to identify a
-        contact and start the workflow specified in the url.
+      description: 'Receive a contact id, external id or phone number to identify a contact and start the workflow specified in the url.'
       parameters:
         - name: serviceId
           in: path
@@ -3134,14 +3129,14 @@ paths:
               type: object
         required: false
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        500:
-          description: ""
+        '500':
+          description: ''
           content: {}
       x-codegen-request-body-name: body
   /provision:
@@ -3188,8 +3183,8 @@ paths:
                         type: string
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3198,17 +3193,24 @@ paths:
         - jwt: []
       x-private: true
       x-codegen-request-body-name: body
-  /services/{serviceId}/feeds/{feedId}/notes:
+  '/services/{serviceId}/feeds/{feedId}/notes':
     post:
       tags:
         - Feeds
       summary: Add an internal note to a Feed
-      description: "Add an internal note to a Feed. Mentions can be added with the\
-        \ following tags:\n- If you want to mention a User: {u@xxx-xxx-xxx} \n- If\
-        \ you want to mention a whole Team: {t@xxx-xxx-xxx}\n\nWhere the \"xxx-xxx-xxx\"\
-        \ is the user or team's UUID.\n\nFor example:\n```\n{\n  \"body\": \"We need\
-        \ help here! {u@646349de-3d3f-4895-9eec-c3c85b9b16f5} {t@85c0a712-c618-46f8-b1e3-a20bdc0feeb3}\"\
-        \n}\n```"
+      description: |-
+        Add an internal note to a Feed. Mentions can be added with the following tags:
+        - If you want to mention a User: {u@xxx-xxx-xxx} 
+        - If you want to mention a whole Team: {t@xxx-xxx-xxx}
+
+        Where the "xxx-xxx-xxx" is the user or team's UUID.
+
+        For example:
+        ```
+        {
+          "body": "We need help here! {u@646349de-3d3f-4895-9eec-c3c85b9b16f5} {t@85c0a712-c618-46f8-b1e3-a20bdc0feeb3}"
+        }
+        ```
       parameters:
         - name: serviceId
           in: path
@@ -3235,8 +3237,8 @@ paths:
                   type: string
         required: false
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
@@ -3253,8 +3255,8 @@ paths:
           schema:
             type: integer
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3300,8 +3302,8 @@ paths:
         - Users
       summary: Grant account access
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
@@ -3313,15 +3315,15 @@ paths:
         - Users
       summary: Revoke account access
       responses:
-        204:
-          description: ""
+        '204':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       security:
         - jwt: []
-  /services/{serviceId}/hotsos/test-reservations:
+  '/services/{serviceId}/hotsos/test-reservations':
     post:
       tags:
         - HotSOS
@@ -3334,8 +3336,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3404,40 +3406,30 @@ paths:
                                 '#text':
                                   type: string
                                   description: Phone Number
-                                  example: +14065551212
+                                  example: '14065551212'
                     SortValue:
                       type: string
                       format: date-time
               example:
-                - ID: "902914"
-                  VIP: null
-                  ExtendedAttributes:
-                    ExtendedAttribute:
-                      - Name: HOME
-                        Value:
-                          '@xsi:type': xsd:string
-                          '#text': (203) 555-3396
-                      - Name: MOBILE
-                        Value:
-                          '@xsi:type': xsd:string
-                          '#text': (517) 555-3678
+                - ID: '902914'
+                  VIP: false
                   FirstName: Alexander
                   LastName: Parker
-                  RoomNumber: "4333"
+                  RoomNumber: '4333'
                   Email: edyth.gleason@example.com
-                  ProfileID: "647999"
-                  Arrival: 2020-07-29T10:40:29-07:00
-                  Departure: 2020-08-08T10:40:29-07:00
+                  ProfileID: '647999'
+                  Arrival: '2020-07-29T10:40:29-07:00'
+                  Departure: '2020-08-08T10:40:29-07:00'
                   Status: CHECKED_IN
                   SpecialRequests: NEWSPAPER
                   Salutation: Mr.
                   Phone: (332) 555-4998
                   Country: US
                   Group:
-                    ID: "8454545"
-                  SortValue: 2020-08-20T10:40:29-07:00
+                    ID: '8454545'
+                  SortValue: '2020-08-20T10:40:29-07:00'
       x-private: true
-  /services/{serviceId}/contacts/export:
+  '/services/{serviceId}/contacts/export':
     get:
       tags:
         - Contacts
@@ -3472,33 +3464,27 @@ paths:
                         type: string
         required: false
       responses:
-        200:
-          description: CSV when given a list of contact integer ids and that list
-            is under the limit that is reasonable to stream.
+        '200':
+          description: CSV when given a list of contact integer ids and that list is under the limit that is reasonable to stream.
           content:
             application/json:
               schema:
                 type: object
-        204:
+        '204':
           description: When request is received and successfully queued up for export.
           content: {}
-        401:
+        '401':
           description: When request is not properly authorized.
           content: {}
-        404:
+        '404':
           description: When service is not found
           content: {}
       x-codegen-request-body-name: body
-  /notification/{userId}/preferences:
+  '/notification/{userId}/preferences':
     put:
       summary: Update notification preferences
       parameters:
         - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: User ID
           in: path
           required: true
           schema:
@@ -3526,8 +3512,8 @@ paths:
                   format: int32
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3584,8 +3570,8 @@ paths:
                   description: Access code from successful oauth request.
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3594,14 +3580,13 @@ paths:
                   token:
                     type: string
                     description: JWT Token for user.
-        400:
-          description: For various bad responses, body of response should contain
-            a reason.
+        '400':
+          description: 'For various bad responses, body of response should contain a reason.'
           content: {}
-        404:
+        '404':
           description: For unknown identities or providers.
           content: {}
-        418:
+        '418':
           description: For ¯\_(ツ)/¯ errors
           content: {}
       x-codegen-request-body-name: body
@@ -3616,7 +3601,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: JWT Auth Token
           content:
             application/json:
@@ -3625,7 +3610,7 @@ paths:
                 properties:
                   token:
                     type: string
-        401:
+        '401':
           description: Token is expired
           content:
             application/json:
@@ -3634,7 +3619,7 @@ paths:
                 properties:
                   error:
                     type: string
-  /services/{serviceId}/events:
+  '/services/{serviceId}/events':
     get:
       tags:
         - Services
@@ -3662,8 +3647,8 @@ paths:
           schema:
             type: boolean
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3679,111 +3664,111 @@ paths:
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:05:03+0000
+                    createdAt: '2020-09-01T15:05:03+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: f46aeebb-f19c-486f-bfd1-704f4a8cb348
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:06:20+0000
+                    createdAt: '2020-09-01T15:06:20+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 1f9c6447-684c-46c0-a277-5a72ad4c5f8b
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:09:29+0000
+                    createdAt: '2020-09-01T15:09:29+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 7bc72425-b58e-4536-8f6b-53d84e7f1bc1
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:16:36+0000
+                    createdAt: '2020-09-01T15:16:36+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 85373292-b18c-48ac-8f74-025ca12c6316
                     type: note
                     body: We need help here! tiger
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:24:09+0000
+                    createdAt: '2020-09-01T15:24:09+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: df3f374c-51ed-4456-80d5-fb71727b4cef
                     type: workflow_started
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:08:42+0000
+                    createdAt: '2020-09-01T21:08:42+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3791,7 +3776,7 @@ paths:
                     type: note
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:08:43+0000
+                    createdAt: '2020-09-01T21:08:43+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3799,21 +3784,21 @@ paths:
                     type: workflow_ended
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:32+0000
+                    createdAt: '2020-09-01T21:09:32+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3821,27 +3806,27 @@ paths:
                     type: mark_confirmed
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:37+0000
+                    createdAt: '2020-09-01T21:09:37+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: e00c3b9a-d756-4636-b428-cc498dd8bfc3
                     type: workflow_started
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:47+0000
+                    createdAt: '2020-09-01T21:09:47+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3849,7 +3834,7 @@ paths:
                     type: note
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:48+0000
+                    createdAt: '2020-09-01T21:09:48+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3857,21 +3842,21 @@ paths:
                     type: workflow_ended
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:17+0000
+                    createdAt: '2020-09-01T21:21:17+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3879,7 +3864,7 @@ paths:
                     type: workflow_started
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:31+0000
+                    createdAt: '2020-09-01T21:21:31+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -3888,16 +3873,16 @@ paths:
                     body: hello John Doe
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:34+0000
+                    createdAt: '2020-09-01T21:21:34+0000'
                     workflow:
                       name: notes
                       id: 3
                 _links:
-                  self: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1
-                  next: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2
+                  self: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1'
+                  next: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2'
       security:
         - jwt: []
-  /organizations/{organizationId}/events:
+  '/organizations/{organizationId}/events':
     get:
       tags:
         - Organizations
@@ -3922,14 +3907,9 @@ paths:
           in: query
           schema:
             type: boolean
-        - name: Organization ID
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -3945,111 +3925,111 @@ paths:
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:05:03+0000
+                    createdAt: '2020-09-01T15:05:03+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: f46aeebb-f19c-486f-bfd1-704f4a8cb348
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:06:20+0000
+                    createdAt: '2020-09-01T15:06:20+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 1f9c6447-684c-46c0-a277-5a72ad4c5f8b
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:09:29+0000
+                    createdAt: '2020-09-01T15:09:29+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 7bc72425-b58e-4536-8f6b-53d84e7f1bc1
                     type: note
                     body: 'We need help here! '
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:16:36+0000
+                    createdAt: '2020-09-01T15:16:36+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: 85373292-b18c-48ac-8f74-025ca12c6316
                     type: note
                     body: We need help here! tiger
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T15:24:09+0000
+                    createdAt: '2020-09-01T15:24:09+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: df3f374c-51ed-4456-80d5-fb71727b4cef
                     type: workflow_started
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:08:42+0000
+                    createdAt: '2020-09-01T21:08:42+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4057,7 +4037,7 @@ paths:
                     type: note
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:08:43+0000
+                    createdAt: '2020-09-01T21:08:43+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4065,21 +4045,21 @@ paths:
                     type: workflow_ended
                     contactId: 458e7cac-04d0-4751-aea3-14fe813645cd
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:32+0000
+                    createdAt: '2020-09-01T21:09:32+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4087,27 +4067,27 @@ paths:
                     type: mark_confirmed
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:37+0000
+                    createdAt: '2020-09-01T21:09:37+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow: {}
                   - id: e00c3b9a-d756-4636-b428-cc498dd8bfc3
                     type: workflow_started
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:47+0000
+                    createdAt: '2020-09-01T21:09:47+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4115,7 +4095,7 @@ paths:
                     type: note
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:09:48+0000
+                    createdAt: '2020-09-01T21:09:48+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4123,21 +4103,21 @@ paths:
                     type: workflow_ended
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:17+0000
+                    createdAt: '2020-09-01T21:21:17+0000'
                     user:
                       id: 1
                       uuid: 6b7a220e-ef28-405a-b2eb-7a9ba64a022e
                       firstName: John
                       lastName: Doe
-                      avatarUrl: https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg
+                      avatarUrl: 'https://cdn.zingle.me/4fe/58/e2/75/94763fe460a6e621ef26097416e7dee.jpeg'
                       email: user@zingle.me
                       emailValidated: true
                       username: user@zingle.me
                       teams:
                         - 4960afc0-e20a-4a85-b700-4c528f9e702e
                       privileges: []
-                      createdAt: 2020-07-31T12:30:35+0000
-                      updatedAt: 2020-10-09T13:10:17+0000
+                      createdAt: '2020-07-31T12:30:35+0000'
+                      updatedAt: '2020-10-09T13:10:17+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4145,7 +4125,7 @@ paths:
                     type: workflow_started
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:31+0000
+                    createdAt: '2020-09-01T21:21:31+0000'
                     workflow:
                       name: notes
                       id: 3
@@ -4154,16 +4134,16 @@ paths:
                     body: hello John Doe
                     contactId: 0b5b15d0-9458-4dd2-8ad2-aa0eb7229a4e
                     serviceId: 3091f4ec-4d6b-4834-8d20-dd23a13e75ca
-                    createdAt: 2020-09-01T21:21:34+0000
+                    createdAt: '2020-09-01T21:21:34+0000'
                     workflow:
                       name: notes
                       id: 3
                 _links:
-                  self: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1
-                  next: https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2
+                  self: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=1'
+                  next: 'https://api.zingle.me/v2/organizations/c787d4f4-867f-4b2f-8c18-828b87f42466/events?page=2'
       security:
         - jwt: []
-  /organizations/{organizationId}/contact-import-configurations/{integration}:
+  '/organizations/{organizationId}/contact-import-configurations/{integration}':
     put:
       tags:
         - Organization Contact Imports
@@ -4192,8 +4172,8 @@ paths:
                   properties: {}
         required: false
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4217,8 +4197,8 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -4241,15 +4221,15 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       security:
         - bearer: []
-  /organizations/{organizationId}/services/{serviceId}:
+  '/organizations/{organizationId}/services/{serviceId}':
     post:
       tags:
         - Organizations
@@ -4266,14 +4246,14 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        400:
-          description: ""
+        '400':
+          description: ''
           content: {}
     delete:
       tags:
@@ -4291,8 +4271,8 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -4304,20 +4284,20 @@ paths:
       summary: Paginate organizations
       parameters:
         - name: page
-          in: path
+          in: query
           required: true
           schema:
             type: number
-            default: 1.0
+            default: 1
         - name: query
-          in: path
+          in: query
           required: true
           schema:
             type: string
             default: Org Name
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4391,21 +4371,21 @@ paths:
                   type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           headers:
             Location:
               description: URI of Org
               schema:
-                pattern: https://api.zingle.me/v2/organizations/{organizationId}
+                pattern: 'https://api.zingle.me/v2/organizations/{organizationId}'
                 type: string
-                default: https://api.zingle.me/v2/organizations/00000000-0000-0000-0000-000000000000
+                default: 'https://api.zingle.me/v2/organizations/00000000-0000-0000-0000-000000000000'
           content:
             application/json:
               schema:
                 type: object
       x-codegen-request-body-name: body
-  /organizations/{organizationId}:
+  '/organizations/{organizationId}':
     get:
       tags:
         - Organizations
@@ -4417,8 +4397,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4475,8 +4455,8 @@ paths:
                   type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -4493,14 +4473,14 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
       x-private: true
-  /organizations/{organizationId}/users:
+  '/organizations/{organizationId}/users':
     get:
       tags:
         - Organizations
@@ -4517,8 +4497,8 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4549,20 +4529,20 @@ paths:
                   type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        400:
+        '400':
           description: No matching role
           content: {}
-        406:
+        '406':
           description: Matching user is unassignable
           content: {}
       x-codegen-request-body-name: body
-  /organizations/{organizationId}/users/{userId}:
+  '/organizations/{organizationId}/users/{userId}':
     put:
       tags:
         - Organizations
@@ -4588,8 +4568,8 @@ paths:
                   type: string
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -4611,16 +4591,16 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        406:
+        '406':
           description: Unable to remove given user from organization
           content: {}
-  /organizations/{organizationId}/services:
+  '/organizations/{organizationId}/services':
     get:
       tags:
         - Organizations
@@ -4632,19 +4612,18 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-  /organizations/{organizationId}/bulk-import/{integration}:
+  '/organizations/{organizationId}/bulk-import/{integration}':
     post:
       tags:
         - Organization Contact Imports
       summary: Bulk Import Contacts into Organization Services
-      description: Imports a delimited file (CSV, TSV, pipe-delimited) for an organization
-        using the organization's current import mapping configuration.
+      description: 'Imports a delimited file (CSV, TSV, pipe-delimited) for an organization using the organization''s current import mapping configuration.'
       operationId: organization-contact-import
       parameters:
         - name: organizationId
@@ -4665,8 +4644,8 @@ paths:
               description: Base64-encoded file to import
         required: false
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
@@ -4678,8 +4657,8 @@ paths:
         - Security
       summary: Refresh JWT Token
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
@@ -4687,12 +4666,12 @@ paths:
                 properties:
                   token:
                     type: string
-        400:
-          description: ""
+        '400':
+          description: ''
           content: {}
       security:
         - jwt: []
-  /organizations/{organizationId}/contact-fields:
+  '/organizations/{organizationId}/contact-fields':
     get:
       tags:
         - Contact Fields
@@ -4704,15 +4683,15 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: ""
+        '200':
+          description: ''
           content: {}
-        404:
+        '404':
           description: When organization missing or organization has no services.
           content: {}
       security:
         - jwt: []
-  /services/{serviceId}/service_code:
+  '/services/{serviceId}/service_code':
     post:
       tags:
         - Services
@@ -4728,14 +4707,14 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        404:
-          description: ""
+        '404':
+          description: ''
           content: {}
       security:
         - bearer: []
@@ -4750,14 +4729,14 @@ paths:
           schema:
             type: string
       responses:
-        202:
-          description: ""
+        '202':
+          description: ''
           content:
             application/json:
               schema:
                 type: object
-        404:
-          description: ""
+        '404':
+          description: ''
           content: {}
       security:
         - bearer: []
@@ -4785,7 +4764,7 @@ components:
           maxLength: 1600
           minLength: 1
           type: string
-          example: Welcome to the Hotel California, we hope you enjoy your stay
+          example: 'Welcome to the Hotel California, we hope you enjoy your stay'
     contact-field-input:
       title: Contact Field Input
       required:
@@ -4807,8 +4786,7 @@ components:
         options:
           uniqueItems: true
           type: array
-          description: If specified, contact field input will be displayed as a dropdown
-            in the Zingle interface.
+          description: 'If specified, contact field input will be displayed as a dropdown in the Zingle interface.'
           items:
             type: string
     contact-field:
@@ -4832,42 +4810,50 @@ components:
           format: date-time
     object-id:
       title: ID
-      required:
-        - id
       type: object
       properties:
         id:
-          pattern: ^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}
+          pattern: '^[a-f\d]{8}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{4}\-[a-f\d]{12}'
           type: string
+      required:
+        - id
     tag-input:
       title: Tag Input
-      required:
-        - name
-        - textColor
       type: object
       properties:
         name:
-          maxLength: 50
-          minLength: 50
           type: string
+          maxLength: 50
           example: Foo
+          minLength: 1
         textColor:
           maxLength: 7
           minLength: 7
-          pattern: ^\#[A-F0-9]{6}$
+          pattern: '^\#[A-F0-9]{6}$'
           type: string
           description: Hex String
         backgroundColor:
           maxLength: 7
           minLength: 7
-          pattern: ^\#[A-F0-9]{6}$
+          pattern: '^\#[A-F0-9]{6}$'
           type: string
+      required:
+        - name
+        - textColor
     tag:
       title: Tag
       allOf:
         - $ref: '#/components/schemas/object-id'
         - $ref: '#/components/schemas/tag-input'
         - $ref: '#/components/schemas/timestamps'
+      x-examples:
+        example-1:
+          id: string
+          name: Foo
+          textColor: strings
+          backgroundColor: strings
+          createdAt: '2019-08-24T14:15:22Z'
+          updatedAt: '2019-08-24T14:15:22Z'
     message-input:
       title: Message Input
       allOf:
@@ -5017,7 +5003,7 @@ components:
           type: string
           description: base64 string
         mimeType:
-          pattern: ^[A-Za-z\d]+\/[A-Za-z\d]+$
+          pattern: '^[A-Za-z\d]+\/[A-Za-z\d]+$'
           type: string
         filename:
           pattern: ^.+\..+$
@@ -5101,8 +5087,7 @@ components:
         externalId:
           maxLength: 50
           type: string
-          description: You may optionally specify a unique ID for the contact.  If
-            supplied, this may be used to query and update the contact.
+          description: 'You may optionally specify a unique ID for the contact.  If supplied, this may be used to query and update the contact.'
         conversationProperties:
           type: object
           properties:
@@ -5113,7 +5098,7 @@ components:
             assignedToUserId:
               maxLength: 36
               type: string
-              description: Contact may be assigned to a user or team, but not both.
+              description: 'Contact may be assigned to a user or team, but not both.'
             assignedToTeamId:
               maxLength: 36
               type: string
@@ -5124,6 +5109,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact-field-value-input'
+      description: ''
     contact:
       title: Contact
       type: object
@@ -5146,7 +5132,7 @@ components:
         value:
           maxLength: 255
           type: string
-          example: +18585551212
+          example: '18585551212'
     contact-field-value-input:
       title: Contact Field Value Input
       type: object
@@ -5167,14 +5153,12 @@ components:
             - allContacts
     message-category-input:
       title: Message Category Input
-      required:
-        - name
       type: object
       properties:
         name:
-          maxLength: 0
-          minLength: 0
           type: string
+      required:
+        - name
     message-category:
       title: Message Category
       allOf:
@@ -5244,8 +5228,7 @@ components:
         column_field_mapping:
           type: object
           properties: {}
-          description: Array of column headers (keys) mapped to Zingle contact fields
-            (values)
+          description: Array of column headers (keys) mapped to Zingle contact fields (values)
     integration-field-mapping:
       title: Integration Field Mapping
       allOf:
@@ -5539,18 +5522,18 @@ components:
         - $ref: '#/components/schemas/timestamps'
   responses:
     record-accepted:
-      description: ""
+      description: ''
       content:
         application/json:
           schema:
             type: object
     record-deleted:
-      description: ""
+      description: ''
       content:
         application/json:
           example: {}
     record-saved:
-      description: ""
+      description: ''
       headers:
         Location:
           description: API URI of the resource that was saved
@@ -5560,7 +5543,7 @@ components:
         application/json:
           example: {}
     request-validation-failed:
-      description: ""
+      description: ''
       content:
         application/json:
           schema:
@@ -5569,7 +5552,7 @@ components:
             code: voluptate commodo irure consectetur culpa
             description: 'dolore '
     see-other:
-      description: ""
+      description: ''
       headers:
         Location:
           schema:
