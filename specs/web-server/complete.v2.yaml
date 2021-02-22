@@ -1166,7 +1166,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./requests/CreateRequest.v1.yaml
+              $ref: ./contacts/CreateRequest.v1.yaml
         required: false
       responses:
         '200':
@@ -2748,7 +2748,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./requests/UploadRequest.v1.yaml
+              $ref: ./csv-imports/UploadRequest.v1.yaml
       responses:
         '200':
           description: ''
