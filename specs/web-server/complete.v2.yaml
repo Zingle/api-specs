@@ -3306,7 +3306,7 @@ paths:
                         type: string
       security:
         - jwt: []
-      operationId: ''
+      operationId: getUserAccountAccess
       description: ''
     post:
       tags:
@@ -3321,6 +3321,7 @@ paths:
                 type: object
       security:
         - jwt: []
+      operationId: grantUserAccountAccess
     delete:
       tags:
         - Users
@@ -3335,7 +3336,7 @@ paths:
       security:
         - jwt: []
       description: ''
-      operationId: ''
+      operationId: revokeUserAccountAccess
   '/services/{serviceId}/hotsos/test-reservations':
     post:
       tags:
