@@ -1166,12 +1166,7 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - type: object
-                  properties:
-                    avatar:
-                      $ref: '#/components/schemas/attachment'
-                - $ref: '#/components/schemas/contact-input'
+              $ref: ./requests/CreateRequest.v1.yaml
         required: false
       responses:
         '200':
