@@ -1,7 +1,8 @@
-title: CreateRequest
+title: RecordRequest
 allOf:
   - $ref: ../complete.v2.yaml#/components/schemas/contact-input
   - type: object
     properties:
       avatar:
         $ref: ../complete.v2.yaml#/components/schemas/attachment
+description: ''

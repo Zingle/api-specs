@@ -1,0 +1,7 @@
+title: UpdateRequest
+allOf:
+  - $ref: ./ProfileInput.v1.yaml
+  - type: object
+    properties:
+      avatar:
+        $ref: ../complete.v2.yaml#/components/schemas/attachment

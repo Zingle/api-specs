@@ -1,0 +1,29 @@
+title: ProfileInput
+type: object
+properties:
+  firstName:
+    type: string
+  lastName:
+    type: string
+  hotsosLogin:
+    type: string
+  title:
+    type: string
+  signature:
+    type: string
+  phone:
+    type: string
+  email:
+    type: string
+  username:
+    type: string
+  avatarUrl:
+    type: string
+  teams:
+    type: array
+    items:
+      $ref: ../complete.v2.yaml#/components/schemas/object-id
+  privileges:
+    type: array
+    items:
+      type: string

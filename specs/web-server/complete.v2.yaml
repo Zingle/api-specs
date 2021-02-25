@@ -657,12 +657,7 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: '#/components/schemas/user-profile-input'
-                - type: object
-                  properties:
-                    avatar:
-                      $ref: '#/components/schemas/attachment'
+              $ref: ./users/UpdateRequest.v1.yaml
         required: false
       responses:
         '202':
@@ -973,7 +968,7 @@ paths:
       tags:
         - Contacts
       summary: Get Contact
-      operationId: get-contact
+      operationId: getContact
       parameters:
         - name: serviceId
           in: path
@@ -1039,12 +1034,7 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: '#/components/schemas/contact-input'
-                - type: object
-                  properties:
-                    avatar:
-                      $ref: '#/components/schemas/attachment'
+              $ref: ./contacts/RecordRequest.v1.yaml
         required: false
       responses:
         '200':
@@ -1054,6 +1044,9 @@ paths:
               schema:
                 type: object
       x-codegen-request-body-name: body
+      operationId: updateContact
+      tags:
+        - Contacts
     delete:
       summary: Delete Contact
       parameters:
@@ -1074,6 +1067,9 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: deleteContact
+      tags:
+        - Contacts
   '/services/{serviceId}/contacts':
     get:
       tags:
@@ -1166,7 +1162,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./contacts/CreateRequest.v1.yaml
+              $ref: ./contacts/RecordRequest.v1.yaml
         required: false
       responses:
         '200':
